@@ -5,24 +5,45 @@ const App = () => {
   const [submittedIncome, setSubmittedIncome] = useState(null);
   const [incomeTax, setIncomeTax] = useState(null);
   const [niTax, setNiTax] = useState(null);
-  const [studentTaxTwo, setStudentTaxTwo] = useState(null);
   const [studentTaxOne, setStudentTaxOne] = useState(null);
+  const [studentTaxTwo, setStudentTaxTwo] = useState(null);
+  const [isCheckedOne, setIsCheckedOne] = useState(false);
   const [isCheckedTwo, setIsCheckedTwo] = useState(false);
+  const [submittedIsCheckedOne, setSubmittedIsCheckedOne] = useState(false);
+  const [submittedIsCheckedTwo, setSubmittedIsCheckedTwo] = useState(false);
 
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChangeOne = (e) => {
+    setIsCheckedOne(e.target.checked);
+  };
+
+  const handleCheckboxChangeTwo = (e) => {
     setIsCheckedTwo(e.target.checked);
   };
 
   const handleChange = (e) => {
     setIncome(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    calculateValues();
+  };
+  const calculateValues = () => {
     setSubmittedIncome(income);
     setIncomeTax(calculateIncomeTax(income));
     setNiTax(calculateNITax(income));
-    setStudentTaxTwo(calculatePlanTwoLoan(income));
-    setStudentTaxOne(calculatePlanOneLoan(income));
+    setSubmittedIsCheckedOne(isCheckedOne);
+    setSubmittedIsCheckedTwo(isCheckedTwo);
+    if (isCheckedOne) {
+      setStudentTaxOne(calculatePlanOneLoan(income));
+    } else {
+      setStudentTaxOne(null);
+    }
+    if (isCheckedTwo) {
+      setStudentTaxTwo(calculatePlanTwoLoan(income));
+    } else {
+      setStudentTaxTwo(null);
+    }
   };
 
   function calculateIncomeTax(income) {
@@ -115,11 +136,20 @@ const App = () => {
             }}
           />
           <label className='label cursor-pointer'>
+            <span className='label-text'>Plan 1 student loan</span>
+            <input
+              type='checkbox'
+              checked={isCheckedOne}
+              onChange={handleCheckboxChangeOne}
+              className='checkbox'
+            />
+          </label>
+          <label className='label cursor-pointer'>
             <span className='label-text'>Plan 2 student loan</span>
             <input
               type='checkbox'
               checked={isCheckedTwo}
-              onChange={handleCheckboxChange}
+              onChange={handleCheckboxChangeTwo}
               className='checkbox'
             />
           </label>
@@ -133,12 +163,17 @@ const App = () => {
                 {submittedIncome -
                   incomeTax -
                   niTax -
-                  studentTaxTwo -
-                  studentTaxOne}{' '}
+                  (submittedIsCheckedOne ? studentTaxOne : 0) -
+                  (submittedIsCheckedTwo ? studentTaxTwo : 0)}
                 <br />
                 Income Tax: £{incomeTax} <br />
                 NI Tax: £{niTax} <br />
-                {isCheckedTwo && <>Student loan: £{studentTaxTwo}</>}
+                {submittedIsCheckedOne && studentTaxOne && (
+                  <> Student loan1: £{studentTaxOne}</>
+                )}
+                {submittedIsCheckedTwo && studentTaxTwo && (
+                  <>Student loan2: £{studentTaxTwo}</>
+                )}
               </div>
             )}
           </div>
