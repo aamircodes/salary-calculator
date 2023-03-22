@@ -37,7 +37,7 @@ const App = () => {
     const incomeTax = calculateIncomeTax(income);
     const niTax = calculateNITax(income);
     const studentTaxOne = checkedLoans.planOne
-      ? calculatePlanOneLoan(income)
+      ? calculatePlanOneLoan(income, checkedLoans.planTwo)
       : null;
     const studentTaxTwo = checkedLoans.planTwo
       ? calculatePlanTwoLoan(income)
@@ -59,13 +59,16 @@ const App = () => {
 
   function calculateIncomeTax(income) {
     const personalAllowance =
-      income < 100000
+      income <= 100000
         ? PERSONAL_ALLOWANCE
         : income > 100000 && income < 125140
         ? PERSONAL_ALLOWANCE - (income - 100000) * 0.5
         : 0;
 
     let tax = 0;
+    if (income <= PERSONAL_ALLOWANCE) {
+      return 0;
+    }
     if (income > HIGHER_RATE_THRESHOLD) {
       tax += (income - HIGHER_RATE_THRESHOLD) * INCOME_TAX_RATE_ADDITIONAL;
       income = HIGHER_RATE_THRESHOLD;
@@ -87,32 +90,31 @@ const App = () => {
 
   // Class 1A NI 23/24
   function calculateNITax(salary) {
-    const niThresholdPrimary = PERSONAL_ALLOWANCE;
-    const niThresholdSecondary = BASIC_RATE_THRESHOLD;
-    const niRateSecondary = NI_RATE_SECONDARY;
-    const niRateAdditional = NI_RATE_ADDITIONAL;
-
     let ni = 0;
 
-    if (salary > niThresholdSecondary) {
-      const additionalNI = salary - niThresholdSecondary;
-      ni += additionalNI * niRateAdditional;
-      salary = niThresholdSecondary;
+    if (salary > BASIC_RATE_THRESHOLD) {
+      const additionalNI = salary - BASIC_RATE_THRESHOLD;
+      ni += additionalNI * NI_RATE_ADDITIONAL;
+      salary = BASIC_RATE_THRESHOLD;
     }
 
-    if (salary > niThresholdPrimary) {
-      const primaryNI = salary - niThresholdPrimary;
-      ni += primaryNI * niRateSecondary;
+    if (salary > PERSONAL_ALLOWANCE) {
+      const primaryNI = salary - PERSONAL_ALLOWANCE;
+      ni += primaryNI * NI_RATE_SECONDARY;
     }
 
     return ni;
   }
 
-  function calculatePlanOneLoan(income) {
+  function calculatePlanOneLoan(income, planTwoChecked) {
     let tax = 0;
     if (income >= 20195) {
-      const taxableIncome = income - 20195;
-      tax = taxableIncome * 0.09;
+      if (income >= 27295 && planTwoChecked) {
+        tax = (27295 - 20195) * 0.09;
+      } else if (!planTwoChecked) {
+        const taxableIncome = income - 20195;
+        tax = taxableIncome * 0.09;
+      }
     }
     return tax.toFixed(2);
   }
@@ -124,6 +126,13 @@ const App = () => {
     }
     return tax.toFixed(2);
   }
+  const netIncome = (
+    results.submittedIncome -
+    results.incomeTax -
+    results.niTax -
+    (submittedCheckedLoans.planOne ? results.studentTaxOne : 0) -
+    (submittedCheckedLoans.planTwo ? results.studentTaxTwo : 0)
+  ).toFixed(2);
 
   return (
     <div className='App'>
@@ -135,7 +144,7 @@ const App = () => {
           </label>
           <input
             min='0.01'
-            step='0.01'
+            step={0.01}
             type='number'
             name='salary'
             value={income}
@@ -145,7 +154,6 @@ const App = () => {
             onWheel={(e) => {
               e.preventDefault();
             }}
-            style={{ overflow: 'hidden' }}
           />
           <label className='label cursor-pointer'>
             <span className='label-text'>Plan 1 student loan</span>
@@ -171,17 +179,14 @@ const App = () => {
           <div>
             {results.submittedIncome !== null && (
               <div>
-                Your net income is: £
-                {results.submittedIncome -
-                  results.incomeTax -
-                  results.niTax -
-                  (submittedCheckedLoans.planOne ? results.studentTaxOne : 0) -
-                  (submittedCheckedLoans.planTwo ? results.studentTaxTwo : 0)}
+                Your net income is: £{netIncome}
                 <br />
                 Income Tax: £{results.incomeTax} <br />
                 NI Tax: £{results.niTax} <br />
                 {submittedCheckedLoans.planOne && results.studentTaxOne && (
-                  <> Student loan 1: £{results.studentTaxOne}</>
+                  <>
+                    Student loan 1: £{results.studentTaxOne} <br />{' '}
+                  </>
                 )}
                 {submittedCheckedLoans.planTwo && results.studentTaxTwo && (
                   <>Student loan 2: £{results.studentTaxTwo}</>
