@@ -1,24 +1,32 @@
 import { useState } from 'react';
 
+const PERSONAL_ALLOWANCE = 12570;
+const BASIC_RATE_THRESHOLD = 50270;
+const HIGHER_RATE_THRESHOLD = 150000;
+const INCOME_TAX_RATE_BASIC = 0.2;
+const INCOME_TAX_RATE_HIGHER = 0.4;
+const INCOME_TAX_RATE_ADDITIONAL = 0.45;
+const NI_RATE_SECONDARY = 0.12;
+const NI_RATE_ADDITIONAL = 0.02;
+
 const App = () => {
   const [income, setIncome] = useState('');
-  const [submittedIncome, setSubmittedIncome] = useState(null);
-  const [incomeTax, setIncomeTax] = useState(null);
-  const [niTax, setNiTax] = useState(null);
-  const [studentTaxOne, setStudentTaxOne] = useState(null);
-  const [studentTaxTwo, setStudentTaxTwo] = useState(null);
-  const [isCheckedOne, setIsCheckedOne] = useState(false);
-  const [isCheckedTwo, setIsCheckedTwo] = useState(false);
-  const [submittedIsCheckedOne, setSubmittedIsCheckedOne] = useState(false);
-  const [submittedIsCheckedTwo, setSubmittedIsCheckedTwo] = useState(false);
+  const [results, setResults] = useState({
+    submittedIncome: null,
+    incomeTax: null,
+    niTax: null,
+    studentTaxOne: null,
+    studentTaxTwo: null,
+  });
+  const [checkedLoans, setCheckedLoans] = useState({
+    planOne: false,
+    planTwo: false,
+  });
 
-  const handleCheckboxChangeOne = (e) => {
-    setIsCheckedOne(e.target.checked);
-  };
-
-  const handleCheckboxChangeTwo = (e) => {
-    setIsCheckedTwo(e.target.checked);
-  };
+  const [submittedCheckedLoans, setSubmittedCheckedLoans] = useState({
+    planOne: false,
+    planTwo: false,
+  });
 
   const handleChange = (e) => {
     setIncome(e.target.value);
@@ -26,49 +34,52 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    calculateValues();
+    const incomeTax = calculateIncomeTax(income);
+    const niTax = calculateNITax(income);
+    const studentTaxOne = checkedLoans.planOne
+      ? calculatePlanOneLoan(income)
+      : null;
+    const studentTaxTwo = checkedLoans.planTwo
+      ? calculatePlanTwoLoan(income)
+      : null;
+
+    setResults({
+      submittedIncome: income,
+      incomeTax,
+      niTax,
+      studentTaxOne,
+      studentTaxTwo,
+    });
+    setSubmittedCheckedLoans(checkedLoans);
   };
-  const calculateValues = () => {
-    setSubmittedIncome(income);
-    setIncomeTax(calculateIncomeTax(income));
-    setNiTax(calculateNITax(income));
-    setSubmittedIsCheckedOne(isCheckedOne);
-    setSubmittedIsCheckedTwo(isCheckedTwo);
-    if (isCheckedOne) {
-      setStudentTaxOne(calculatePlanOneLoan(income));
-    } else {
-      setStudentTaxOne(null);
-    }
-    if (isCheckedTwo) {
-      setStudentTaxTwo(calculatePlanTwoLoan(income));
-    } else {
-      setStudentTaxTwo(null);
-    }
+
+  const handleCheckboxChange = (plan) => {
+    setCheckedLoans({ ...checkedLoans, [plan]: !checkedLoans[plan] });
   };
 
   function calculateIncomeTax(income) {
     const personalAllowance =
       income < 100000
-        ? 12570
+        ? PERSONAL_ALLOWANCE
         : income > 100000 && income < 125140
-        ? 12570 - (income - 100000) * 0.5
+        ? PERSONAL_ALLOWANCE - (income - 100000) * 0.5
         : 0;
 
     let tax = 0;
-    if (income > 150000) {
-      tax += (income - 150000) * 0.45;
-      income = 150000;
+    if (income > HIGHER_RATE_THRESHOLD) {
+      tax += (income - HIGHER_RATE_THRESHOLD) * INCOME_TAX_RATE_ADDITIONAL;
+      income = HIGHER_RATE_THRESHOLD;
     }
-    if (income > 50270) {
-      tax += (income - 50270) * 0.4;
-      income = 50270;
+    if (income > BASIC_RATE_THRESHOLD) {
+      tax += (income - BASIC_RATE_THRESHOLD) * INCOME_TAX_RATE_HIGHER;
+      income = BASIC_RATE_THRESHOLD;
     }
-    if (income > 12570) {
-      tax += (income - 12570) * 0.2;
-      income = 12570;
+    if (income > PERSONAL_ALLOWANCE) {
+      tax += (income - PERSONAL_ALLOWANCE) * INCOME_TAX_RATE_BASIC;
+      income = PERSONAL_ALLOWANCE;
     }
     if (income > 0) {
-      tax += (income - personalAllowance) * 0.4;
+      tax += (income - personalAllowance) * INCOME_TAX_RATE_HIGHER;
     }
 
     return tax;
@@ -76,10 +87,10 @@ const App = () => {
 
   // Class 1A NI 23/24
   function calculateNITax(salary) {
-    const niThresholdPrimary = 12570;
-    const niThresholdSecondary = 50270;
-    const niRateSecondary = 0.12;
-    const niRateAdditional = 0.02;
+    const niThresholdPrimary = PERSONAL_ALLOWANCE;
+    const niThresholdSecondary = BASIC_RATE_THRESHOLD;
+    const niRateSecondary = NI_RATE_SECONDARY;
+    const niRateAdditional = NI_RATE_ADDITIONAL;
 
     let ni = 0;
 
@@ -99,7 +110,7 @@ const App = () => {
 
   function calculatePlanOneLoan(income) {
     let tax = 0;
-    if (income > 20195) {
+    if (income >= 20195) {
       const taxableIncome = income - 20195;
       tax = taxableIncome * 0.09;
     }
@@ -134,13 +145,14 @@ const App = () => {
             onWheel={(e) => {
               e.preventDefault();
             }}
+            style={{ overflow: 'hidden' }}
           />
           <label className='label cursor-pointer'>
             <span className='label-text'>Plan 1 student loan</span>
             <input
               type='checkbox'
-              checked={isCheckedOne}
-              onChange={handleCheckboxChangeOne}
+              checked={checkedLoans.planOne}
+              onChange={() => handleCheckboxChange('planOne')}
               className='checkbox'
             />
           </label>
@@ -148,8 +160,8 @@ const App = () => {
             <span className='label-text'>Plan 2 student loan</span>
             <input
               type='checkbox'
-              checked={isCheckedTwo}
-              onChange={handleCheckboxChangeTwo}
+              checked={checkedLoans.planTwo}
+              onChange={() => handleCheckboxChange('planTwo')}
               className='checkbox'
             />
           </label>
@@ -157,22 +169,22 @@ const App = () => {
             Calculate!
           </button>
           <div>
-            {submittedIncome !== null && (
+            {results.submittedIncome !== null && (
               <div>
                 Your net income is: £
-                {submittedIncome -
-                  incomeTax -
-                  niTax -
-                  (submittedIsCheckedOne ? studentTaxOne : 0) -
-                  (submittedIsCheckedTwo ? studentTaxTwo : 0)}
+                {results.submittedIncome -
+                  results.incomeTax -
+                  results.niTax -
+                  (submittedCheckedLoans.planOne ? results.studentTaxOne : 0) -
+                  (submittedCheckedLoans.planTwo ? results.studentTaxTwo : 0)}
                 <br />
-                Income Tax: £{incomeTax} <br />
-                NI Tax: £{niTax} <br />
-                {submittedIsCheckedOne && studentTaxOne && (
-                  <> Student loan1: £{studentTaxOne}</>
+                Income Tax: £{results.incomeTax} <br />
+                NI Tax: £{results.niTax} <br />
+                {submittedCheckedLoans.planOne && results.studentTaxOne && (
+                  <> Student loan 1: £{results.studentTaxOne}</>
                 )}
-                {submittedIsCheckedTwo && studentTaxTwo && (
-                  <>Student loan2: £{studentTaxTwo}</>
+                {submittedCheckedLoans.planTwo && results.studentTaxTwo && (
+                  <>Student loan 2: £{results.studentTaxTwo}</>
                 )}
               </div>
             )}
