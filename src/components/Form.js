@@ -70,7 +70,7 @@ const Form = ({ setResults, setSubmittedCheckedLoans }) => {
 
     let tax = 0;
     if (income <= PERSONAL_ALLOWANCE) {
-      return 0;
+      return tax.toFixed(2);
     }
     if (income > HIGHER_RATE_THRESHOLD) {
       tax += (income - HIGHER_RATE_THRESHOLD) * INCOME_TAX_RATE_ADDITIONAL;
@@ -88,7 +88,7 @@ const Form = ({ setResults, setSubmittedCheckedLoans }) => {
       tax += (income - personalAllowance) * INCOME_TAX_RATE_HIGHER;
     }
 
-    return tax;
+    return tax.toFixed(2);
   }
 
   // Class 1A NI 23/24
@@ -106,7 +106,7 @@ const Form = ({ setResults, setSubmittedCheckedLoans }) => {
       ni += primaryNI * NI_RATE_SECONDARY;
     }
 
-    return ni;
+    return ni.toFixed(2);
   }
 
   function calculatePlanOneLoan(income, planTwoChecked) {
@@ -142,10 +142,10 @@ const Form = ({ setResults, setSubmittedCheckedLoans }) => {
   function calculatePension(income, percentage) {
     console.log(income, percentage);
     let pension = income * (percentage / 100);
-    return pension;
+    return pension.toFixed(2);
   }
   return (
-    <form onSubmit={handleSubmit} className='form-control w-full max-w-xs'>
+    <form onSubmit={handleSubmit} className='px-3'>
       <label className='label'>
         <span className='label-text'>What is your annual salary?</span>
       </label>
