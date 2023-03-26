@@ -24,14 +24,7 @@ const App = () => {
     <div className='App'>
       <header className='w-full my-4 px-4 md:pt-4'>
         <div className='navbar justify-between bg-base-100 text-base-content rounded-box w-full max-w-xl mx-auto'>
-          <div className='flex-none'>
-            {/* <button
-              class='btn btn-square btn-ghost'
-              aria-label='Go to homepage'
-            >
-              <div class='relative w-full aspect-square m-1'>1</div>
-            </button> */}
-          </div>
+          <div className='flex-none'></div>
           <div className='flex-none'>
             <h1>Income Tax Calculator</h1>
           </div>
