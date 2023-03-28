@@ -143,6 +143,9 @@ const Form = ({ setResults, setSubmittedCheckedLoans }) => {
     let pension = income * (percentage / 100);
     return pension;
   }
+
+  //-------------------------------------------------------------//
+
   return (
     <form onSubmit={handleSubmit} className='px-3'>
       <label className='label'>
