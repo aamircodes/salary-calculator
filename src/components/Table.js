@@ -3,18 +3,23 @@ const Table = ({
   taxableIncome,
   incomeTax,
   pensionDeductions,
+  niTax,
+  plan1Loan,
+  plan2Loan,
+  pgLoan,
+  takehome,
 }) => {
   return (
     <div className='flex flex-col gap-2 p-3 border-2 border-orange-500 w-full h-full'>
       <div>Gross income: {grossIncome}</div>
+      <div>Pension Deductions: {pensionDeductions}</div>
       <div>Taxable income: {taxableIncome}</div>
       <div>Income Tax: {incomeTax}</div>
-      <div>Pension Deductions: {pensionDeductions}</div>
-      <div>National Insurance: </div>
-      <div>Student Loan 1: </div>
-      <div>Student Loan 2: </div>
-      <div>Postgraduate Loan 1: </div>
-      <div>2023 take home: </div>
+      <div>National Insurance: {niTax}</div>
+      <div>Student Loan 1: {plan1Loan}</div>
+      <div>Student Loan 2: {plan2Loan}</div>
+      <div>Postgraduate Loan 1: {pgLoan}</div>
+      <div>2023 take home: {takehome}</div>
     </div>
   );
 };

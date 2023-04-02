@@ -4,6 +4,11 @@ import {
   calculateIncomeTax,
   calculatePensionDeductions,
   calculateTaxableIncome,
+  calculateNiTax,
+  calculatePlanOneLoan,
+  calculatePlanTwoLoan,
+  calculatePgLoan,
+  calculateTakehome,
 } from '../utils/taxUtils';
 
 const Form = ({
@@ -11,16 +16,21 @@ const Form = ({
   setTaxableIncome,
   setIncomeTax,
   setPensionDeductions,
+  setNiTax,
+  setPlan1Loan,
+  setPlan2Loan,
+  setPgLoan,
+  setTakehome,
 }) => {
   const [salary, setSalary] = useState('');
-  const [pensionPercentage, setPensionPercentage] = useState('');
-  const [isPlan1Checked, setIsPlan1Checked] = useState(false);
-  const [isPlan2Checked, setIsPlan2Checked] = useState(false);
+  const [pensionRate, setPensionRate] = useState('');
+  const [isPlanOneChecked, setIsPlanOneChecked] = useState(false);
+  const [isPlanTwoChecked, setIsPlanTwoChecked] = useState(false);
   const [isPgChecked, isSetPgChecked] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const pensionPercentageDivided = pensionPercentage / 100;
+    const pensionPercentageDivided = pensionRate / 100;
     const grossIncome = calculateGrossIncome(salary);
     const taxableIncome = calculateTaxableIncome(
       salary,
@@ -31,11 +41,28 @@ const Form = ({
       salary,
       pensionPercentageDivided
     );
+    const niTax = calculateNiTax(salary);
+
+    const plan1Loan = isPlanOneChecked
+      ? calculatePlanOneLoan(salary, pensionRate / 100, isPlanTwoChecked)
+      : '';
+    const plan2Loan = isPlanTwoChecked ? calculatePlanTwoLoan(salary) : '';
+    const pgLoan = isPgChecked ? calculatePgLoan(salary) : '';
+    const takehome = calculateTakehome(
+      salary,
+      pensionRate / 100,
+      isPlanOneChecked
+    );
 
     setGrossIncome(grossIncome);
     setTaxableIncome(taxableIncome);
     setIncomeTax(incomeTax);
     setPensionDeductions(pensionDeductions);
+    setNiTax(niTax);
+    setPlan1Loan(plan1Loan);
+    setPlan2Loan(plan2Loan);
+    setPgLoan(pgLoan);
+    setTakehome(takehome);
   };
 
   return (
@@ -66,8 +93,8 @@ const Form = ({
               step='0.1'
               min='0.0'
               placeholder='5.0'
-              value={pensionPercentage}
-              onChange={(e) => setPensionPercentage(e.target.value)}
+              value={pensionRate}
+              onChange={(e) => setPensionRate(e.target.value)}
             />
           </label>
         </div>
@@ -79,8 +106,8 @@ const Form = ({
                 <span className='label-text mr-2'>plan 1</span>
                 <input
                   type='checkbox'
-                  checked={isPlan1Checked}
-                  onChange={() => setIsPlan1Checked(!isPlan1Checked)}
+                  checked={isPlanOneChecked}
+                  onChange={() => setIsPlanOneChecked(!isPlanOneChecked)}
                   className='checkbox'
                 />
               </label>
@@ -88,8 +115,8 @@ const Form = ({
                 <span className='label-text mr-2'>plan 2</span>
                 <input
                   type='checkbox'
-                  checked={isPlan2Checked}
-                  onChange={() => setIsPlan2Checked(!isPlan2Checked)}
+                  checked={isPlanTwoChecked}
+                  onChange={() => setIsPlanTwoChecked(!isPlanTwoChecked)}
                   className='checkbox'
                 />
               </label>

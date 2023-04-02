@@ -6,6 +6,9 @@ const INCOME_TAX_RATE_HIGHER = 0.4;
 const INCOME_TAX_RATE_ADDITIONAL = 0.45;
 const NI_RATE_SECONDARY = 0.12;
 const NI_RATE_ADDITIONAL = 0.02;
+const planOneThreshold = 22015;
+const planTwoThreshold = 27295;
+const pgThreshold = 21000;
 
 export function calculateGrossIncome(salary) {
   return salary;
@@ -62,4 +65,86 @@ export function calculateIncomeTax(salary, pensionPercentage) {
   }
 
   return tax;
+}
+
+export function calculateNiTax(salary) {
+  let ni = 0;
+
+  if (salary > BASIC_RATE_THRESHOLD) {
+    const additionalNI = salary - BASIC_RATE_THRESHOLD;
+    ni += additionalNI * NI_RATE_ADDITIONAL;
+    salary = BASIC_RATE_THRESHOLD;
+  }
+
+  if (salary > PERSONAL_ALLOWANCE) {
+    const primaryNI = salary - PERSONAL_ALLOWANCE;
+    ni += primaryNI * NI_RATE_SECONDARY;
+  }
+
+  return ni;
+}
+
+// need to confirm accuracy, govt website is obfuscated re: what source this is calculated on
+export function calculatePlanOneLoan(
+  salary,
+  pensionPercentage,
+  isPlan2Checked
+) {
+  const taxableIncome =
+    salary - calculatePensionDeductions(salary, pensionPercentage);
+
+  let loan = 0;
+
+  if (taxableIncome > planOneThreshold) {
+    if (taxableIncome > 27295 && isPlan2Checked) {
+      loan = (27295 - planOneThreshold) * 0.09;
+    } else if (!isPlan2Checked) {
+      loan = (taxableIncome - planOneThreshold) * 0.09;
+    }
+  }
+  return loan;
+}
+
+// need to confirm accuracy, govt website is obfuscated re: what source this is calculated on
+export function calculatePlanTwoLoan(salary) {
+  let loan = 0;
+  if (salary > planTwoThreshold) {
+    const taxableIncome = salary - planTwoThreshold;
+    loan = taxableIncome * 0.09;
+  }
+  return loan;
+}
+
+export function calculatePgLoan(salary) {
+  let tax = 0;
+  if (salary > pgThreshold) {
+    const taxableIncome = salary - pgThreshold;
+    tax = taxableIncome * 0.06;
+  }
+  return tax;
+}
+
+export function calculateTakehome(
+  salary,
+  pensionPercentage,
+  isPlan1Checked,
+  isPlan2Checked,
+  isPgChecked
+) {
+  console.log(
+    calculatePensionDeductions(salary, pensionPercentage),
+    calculateIncomeTax(salary, pensionPercentage),
+    calculateNiTax(salary)
+  );
+  return (
+    salary -
+    calculatePensionDeductions(salary, pensionPercentage) -
+    calculateIncomeTax(salary, pensionPercentage) -
+    calculateNiTax(salary) -
+    (isPlan1Checked
+      ? calculatePlanOneLoan(salary, pensionPercentage, isPlan2Checked)
+      : 0) -
+    (isPlan2Checked ? calculatePlanTwoLoan(salary) : 0) -
+    (isPgChecked ? calculatePgLoan(salary) : 0)
+  );
 }
