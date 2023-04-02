@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Results = ({ results, submittedCheckedLoans }) => {
   const netIncome =
     results.submittedIncome -
