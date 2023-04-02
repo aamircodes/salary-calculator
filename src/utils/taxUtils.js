@@ -85,21 +85,14 @@ export function calculateNiTax(salary) {
 }
 
 // need to confirm accuracy, govt website is obfuscated re: what source this is calculated on
-export function calculatePlanOneLoan(
-  salary,
-  pensionPercentage,
-  isPlan2Checked
-) {
-  const taxableIncome =
-    salary - calculatePensionDeductions(salary, pensionPercentage);
-
+export function calculatePlanOneLoan(salary, isPlan2Checked) {
   let loan = 0;
 
-  if (taxableIncome > planOneThreshold) {
-    if (taxableIncome > 27295 && isPlan2Checked) {
+  if (salary > planOneThreshold) {
+    if (salary > 27295 && isPlan2Checked) {
       loan = (27295 - planOneThreshold) * 0.09;
     } else if (!isPlan2Checked) {
-      loan = (taxableIncome - planOneThreshold) * 0.09;
+      loan = (salary - planOneThreshold) * 0.09;
     }
   }
   return loan;
@@ -134,16 +127,15 @@ export function calculateTakehome(
   console.log(
     calculatePensionDeductions(salary, pensionPercentage),
     calculateIncomeTax(salary, pensionPercentage),
-    calculateNiTax(salary)
+    calculateNiTax(salary),
+    calculatePlanOneLoan(salary, isPlan2Checked)
   );
   return (
     salary -
     calculatePensionDeductions(salary, pensionPercentage) -
     calculateIncomeTax(salary, pensionPercentage) -
     calculateNiTax(salary) -
-    (isPlan1Checked
-      ? calculatePlanOneLoan(salary, pensionPercentage, isPlan2Checked)
-      : 0) -
+    (isPlan1Checked ? calculatePlanOneLoan(salary, isPlan2Checked) : 0) -
     (isPlan2Checked ? calculatePlanTwoLoan(salary) : 0) -
     (isPgChecked ? calculatePgLoan(salary) : 0)
   );

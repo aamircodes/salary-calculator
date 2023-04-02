@@ -44,7 +44,7 @@ const Form = ({
     const niTax = calculateNiTax(salary);
 
     const plan1Loan = isPlanOneChecked
-      ? calculatePlanOneLoan(salary, pensionRate / 100, isPlanTwoChecked)
+      ? calculatePlanOneLoan(salary, isPlanTwoChecked)
       : '';
     const plan2Loan = isPlanTwoChecked ? calculatePlanTwoLoan(salary) : '';
     const pgLoan = isPgChecked ? calculatePgLoan(salary) : '';
