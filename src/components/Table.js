@@ -10,7 +10,7 @@ const Table = ({
   takehome,
 }) => {
   return (
-    <div className='flex flex-col gap-2 p-3 border-2 border-orange-500 w-full h-full'>
+    <div className='flex flex-col gap-2 p-3'>
       <div>Gross income: {grossIncome}</div>
       <div>Pension Deductions: {pensionDeductions}</div>
       <div>Taxable income: {taxableIncome}</div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Form from './components/Form';
 import Table from './components/Table';
+import Header from './components/Header';
 
 const App = () => {
   const [grossIncome, setGrossIncome] = useState(null);
@@ -14,32 +15,37 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='App'>
-      <div className='flex flex-row justify-start items-center h-full border border-white-500'>
-        <Form
-          setGrossIncome={setGrossIncome}
-          setTaxableIncome={setTaxableIncome}
-          setIncomeTax={setIncomeTax}
-          setPensionDeductions={setPensionDeductions}
-          setNiTax={setNiTax}
-          setPlan1Loan={setPlan1Loan}
-          setPlan2Loan={setPlan2Loan}
-          setPgLoan={setPgLoan}
-          setTakehome={setTakehome}
-        />
-        <Table
-          grossIncome={grossIncome}
-          taxableIncome={taxableIncome}
-          incomeTax={incomeTax}
-          pensionDeductions={pensionDeductions}
-          niTax={niTax}
-          plan1Loan={plan1Loan}
-          plan2Loan={plan2Loan}
-          pgLoan={pgLoan}
-          takehome={takehome}
-        />
+    <>
+      <Header />
+      <div className='flex flex-row border border-rose-500'>
+        <div className='w-1/2'>
+          <Form
+            setGrossIncome={setGrossIncome}
+            setTaxableIncome={setTaxableIncome}
+            setIncomeTax={setIncomeTax}
+            setPensionDeductions={setPensionDeductions}
+            setNiTax={setNiTax}
+            setPlan1Loan={setPlan1Loan}
+            setPlan2Loan={setPlan2Loan}
+            setPgLoan={setPgLoan}
+            setTakehome={setTakehome}
+          />
+        </div>
+        <div className='w-1/2'>
+          <Table
+            grossIncome={grossIncome}
+            taxableIncome={taxableIncome}
+            incomeTax={incomeTax}
+            pensionDeductions={pensionDeductions}
+            niTax={niTax}
+            plan1Loan={plan1Loan}
+            plan2Loan={plan2Loan}
+            pgLoan={pgLoan}
+            takehome={takehome}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

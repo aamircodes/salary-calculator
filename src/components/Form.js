@@ -66,12 +66,14 @@ const Form = ({
   };
 
   return (
-    <div className='p-3 border-2 border-green-500 max-w-sm'>
-      <h1 className='text-2xl font-bold mb-4'>Take home calculator</h1>
-      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
-        <div className='flex flex-col gap-2'>
+    <div className='p-3 border-2 border-rose-800'>
+      <div className='container mx-auto py-4'>
+        <h2 className='text-2xl font-bold text-center'>My Heading</h2>
+      </div>
+      <form className='grid grid-cols-1 gap-2' onSubmit={handleSubmit}>
+        <div className='flex flex-col items-center'>
           <label className='text-lg font-semibold cursor-pointer'>
-            <span className='label-text mr-2'>Salary {`\u00A3`}</span>
+            <span className='label-text'>Salary {`\u00A3`}</span>
             <input
               className='input input-bordered max-w-xs font-normal'
               type='number'
@@ -83,9 +85,9 @@ const Form = ({
             />
           </label>
         </div>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col items-center'>
           <label className='text-lg font-semibold cursor-pointer'>
-            <span className='label-text mr-2'>Pension {`\u0025`}</span>
+            <span className='label-text'>Pension {`\u0025`}</span>
             {/* add validation */}
             <input
               className='input input-bordered max-w-xs font-normal'
@@ -98,7 +100,7 @@ const Form = ({
             />
           </label>
         </div>
-        <div className='flex flex-col gap-2'>
+        {/* <div className='flex flex-col gap-2'>
           <label className='text-lg font-semibold cursor-pointer'>
             <span className='label-text'>Student loans</span>
             <div className='flex flex-row gap-4'>
@@ -134,7 +136,7 @@ const Form = ({
         </div>
         <button className='btn w-full max-w-xs' type='submit'>
           Calculate
-        </button>
+        </button> */}
       </form>
     </div>
   );
