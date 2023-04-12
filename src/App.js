@@ -29,6 +29,7 @@ const App = () => {
           setPgLoan={setPgLoan}
           setTakehome={setTakehome}
         />
+        <h1 className='flex justify-center text-lg font-bold'>Your results</h1>
         <Table
           grossIncome={grossIncome}
           taxableIncome={taxableIncome}
@@ -40,6 +41,10 @@ const App = () => {
           pgLoan={pgLoan}
           takehome={takehome}
         />
+        <div className='flex justify-center m-5'>
+          {' '}
+          <button className='btn btn-primary'>Recalculate</button>
+        </div>
       </main>
     </div>
   );

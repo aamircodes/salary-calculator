@@ -67,7 +67,7 @@ const Form = ({
 
   return (
     <div className='bg-primary-content rounded-lg shadow-md p-4 my-4'>
-      <form className='flex flex-col space-y-1' onSubmit={handleSubmit}>
+      <form className='flex flex-col space-y-4' onSubmit={handleSubmit}>
         <div className='grid gap-4 grid-cols-2 grid-rows-4 place-items-center'>
           <label className='text-2xl font-semibold block text-primary-700'>
             Your annual salary £
@@ -105,7 +105,7 @@ const Form = ({
                   type='checkbox'
                   checked={isPlanOneChecked}
                   onChange={() => setIsPlanOneChecked(!isPlanOneChecked)}
-                  className='checkbox h-5 w-5 ml-1'
+                  className='checkbox checkbox-primary h-5 w-5 ml-1'
                 />
               </label>
               <label className='label cursor-pointer font-medium text-lg'>
@@ -114,7 +114,7 @@ const Form = ({
                   type='checkbox'
                   checked={isPlanTwoChecked}
                   onChange={() => setIsPlanTwoChecked(!isPlanTwoChecked)}
-                  className='checkbox h-5 w-5 ml-1'
+                  className='checkbox checkbox-primary h-5 w-5 ml-1'
                 />
               </label>
               <label className='label cursor-pointer font-medium text-lg'>
@@ -123,7 +123,7 @@ const Form = ({
                   type='checkbox'
                   checked={isPgChecked}
                   onChange={() => isSetPgChecked(!isPgChecked)}
-                  className='checkbox h-5 w-5 ml-1'
+                  className='checkbox checkbox-primary h-5 w-5 ml-1'
                 />
               </label>
               {/* </div> */}

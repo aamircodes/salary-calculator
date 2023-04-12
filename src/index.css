@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
-    padding: 20px;
+
+@layer base {
+    html {
+        font-family: Poppins-Semibold, Arial, sans-serif;
+    }
+}
+
+.table th {
+    border-right: 1px solid #f7f7f7;
+}
+
+.table td {
+    border-right: 1px solid #f7f7f7;
 }

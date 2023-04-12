@@ -35,7 +35,7 @@ const Results = ({ results, submittedCheckedLoans }) => {
   };
 
   return (
-    <div className='overflow-x-auto'>
+    <div className='overflow-x-auto '>
       <table className='table table-zebra w-full'>
         <thead>
           <tr>
