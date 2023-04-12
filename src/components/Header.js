@@ -1,8 +1,8 @@
 const Header = () => {
   return (
-    <h1 className='font-bold text-3xl text-center py-1 pb-2 text-green-300 '>
-      My app
-    </h1>
+    <header className='bg-blue-500 text-white text-center py-6'>
+      <h1 className='text-2xl font-bold'>Take home Salary Calculator</h1>
+    </header>
   );
 };
 

@@ -66,77 +66,75 @@ const Form = ({
   };
 
   return (
-    <div className='p-3 border-2 border-rose-800'>
-      <div className='container mx-auto py-4'>
-        <h2 className='text-2xl font-bold text-center'>My Heading</h2>
-      </div>
-      <form className='grid grid-cols-1 gap-2' onSubmit={handleSubmit}>
-        <div className='flex flex-col items-center'>
-          <label className='text-lg font-semibold cursor-pointer'>
-            <span className='label-text'>Salary {`\u00A3`}</span>
-            <input
-              className='input input-bordered max-w-xs font-normal'
-              type='number'
-              step='0.01'
-              min='0.01'
-              placeholder='e.g. 10,000'
-              value={salary}
-              onChange={(e) => setSalary(e.target.value)}
-            />
+    <div className=' bg-primary-content rounded-lg my-8 p-8 shadow-md'>
+      <form className='flex flex-col space-y-6' onSubmit={handleSubmit}>
+        <div className='flex flex-row'>
+          <label className='text-3xl font-semibold mb-2 block text-primary-700'>
+            Your annual salary £
           </label>
+          <input
+            type='number'
+            placeholder='Type here'
+            className='input input-md input-bordered w-full max-w-xs'
+            step='0.01'
+            min='0.01'
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
+          />
         </div>
-        <div className='flex flex-col items-center'>
-          <label className='text-lg font-semibold cursor-pointer'>
-            <span className='label-text'>Pension {`\u0025`}</span>
-            {/* add validation */}
-            <input
-              className='input input-bordered max-w-xs font-normal'
-              type='text'
-              step='0.1'
-              min='0.0'
-              placeholder='5.0'
-              value={pensionRate}
-              onChange={(e) => setPensionRate(e.target.value)}
-            />
+        <div className='flex flex-row'>
+          <label className='text-2xl font-semibold mb-2 block text-primary-700'>
+            Pension contributions %
           </label>
+          <input
+            className='input input-bordered w-full max-w-xs'
+            type='text'
+            step='0.1'
+            min='0.0'
+            placeholder='5%'
+            value={pensionRate}
+            onChange={(e) => setPensionRate(e.target.value)}
+          />
         </div>
-        {/* <div className='flex flex-col gap-2'>
-          <label className='text-lg font-semibold cursor-pointer'>
-            <span className='label-text'>Student loans</span>
-            <div className='flex flex-row gap-4'>
-              <label className='label cursor-pointer'>
-                <span className='label-text mr-2'>plan 1</span>
-                <input
-                  type='checkbox'
-                  checked={isPlanOneChecked}
-                  onChange={() => setIsPlanOneChecked(!isPlanOneChecked)}
-                  className='checkbox'
-                />
-              </label>
-              <label className='label cursor-pointer'>
-                <span className='label-text mr-2'>plan 2</span>
-                <input
-                  type='checkbox'
-                  checked={isPlanTwoChecked}
-                  onChange={() => setIsPlanTwoChecked(!isPlanTwoChecked)}
-                  className='checkbox'
-                />
-              </label>
-              <label className='label cursor-pointer'>
-                <span className='label-text mr-2'>postgraduate loan</span>
-                <input
-                  type='checkbox'
-                  checked={isPgChecked}
-                  onChange={() => isSetPgChecked(!isPgChecked)}
-                  className='checkbox'
-                />
-              </label>
-            </div>
+        <div className=''>
+          <label className='text-2xl font-semibold mb-2 block text-primary-700'>
+            Student loans
           </label>
+          <div className='flex items-center space-x-4'>
+            <label className='label cursor-pointer font-medium text-lg'>
+              Plan 1
+              <input
+                type='checkbox'
+                checked={isPlanOneChecked}
+                onChange={() => setIsPlanOneChecked(!isPlanOneChecked)}
+                className='checkbox'
+              />
+            </label>
+            <label className='label cursor-pointer font-medium text-lg'>
+              Plan 2
+              <input
+                type='checkbox'
+                checked={isPlanTwoChecked}
+                onChange={() => setIsPlanTwoChecked(!isPlanTwoChecked)}
+                className='checkbox'
+              />
+            </label>
+            <label className='label cursor-pointer font-medium text-lg'>
+              Postgraduate Loan
+              <input
+                type='checkbox'
+                checked={isPgChecked}
+                onChange={() => isSetPgChecked(!isPgChecked)}
+                className='checkbox'
+              />
+            </label>
+          </div>
         </div>
-        <button className='btn w-full max-w-xs' type='submit'>
-          Calculate
-        </button> */}
+        <div className='flex justify-center'>
+          <button className='btn btn-primary w-full max-w-xs' type='submit'>
+            Calculate
+          </button>
+        </div>
       </form>
     </div>
   );

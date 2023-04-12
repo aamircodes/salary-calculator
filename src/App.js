@@ -15,37 +15,33 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <>
+    <div className='min-h-screen'>
       <Header />
-      <div className='flex flex-row border border-rose-500'>
-        <div className='w-1/2'>
-          <Form
-            setGrossIncome={setGrossIncome}
-            setTaxableIncome={setTaxableIncome}
-            setIncomeTax={setIncomeTax}
-            setPensionDeductions={setPensionDeductions}
-            setNiTax={setNiTax}
-            setPlan1Loan={setPlan1Loan}
-            setPlan2Loan={setPlan2Loan}
-            setPgLoan={setPgLoan}
-            setTakehome={setTakehome}
-          />
-        </div>
-        <div className='w-1/2'>
-          <Table
-            grossIncome={grossIncome}
-            taxableIncome={taxableIncome}
-            incomeTax={incomeTax}
-            pensionDeductions={pensionDeductions}
-            niTax={niTax}
-            plan1Loan={plan1Loan}
-            plan2Loan={plan2Loan}
-            pgLoan={pgLoan}
-            takehome={takehome}
-          />
-        </div>
-      </div>
-    </>
+      <main className='container mx-auto bg-red-300'>
+        <Form
+          setGrossIncome={setGrossIncome}
+          setTaxableIncome={setTaxableIncome}
+          setIncomeTax={setIncomeTax}
+          setPensionDeductions={setPensionDeductions}
+          setNiTax={setNiTax}
+          setPlan1Loan={setPlan1Loan}
+          setPlan2Loan={setPlan2Loan}
+          setPgLoan={setPgLoan}
+          setTakehome={setTakehome}
+        />
+        <Table
+          grossIncome={grossIncome}
+          taxableIncome={taxableIncome}
+          incomeTax={incomeTax}
+          pensionDeductions={pensionDeductions}
+          niTax={niTax}
+          plan1Loan={plan1Loan}
+          plan2Loan={plan2Loan}
+          pgLoan={pgLoan}
+          takehome={takehome}
+        />
+      </main>
+    </div>
   );
 };
 
