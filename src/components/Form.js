@@ -66,9 +66,9 @@ const Form = ({
   };
 
   return (
-    <div className='bg-primary-content rounded-lg shadow-md p-4 my-4'>
+    <div className='bg-primary-content rounded-lg shadow-md p-4'>
       <form className='flex flex-col space-y-4' onSubmit={handleSubmit}>
-        <div className='grid gap-4 grid-cols-2 grid-rows-4 place-items-center'>
+        <div className='grid gap-4 grid-cols-2 grid-rows-3 place-items-start p-4'>
           <label className='text-2xl font-semibold block text-primary-700'>
             Your annual salary £
           </label>
@@ -93,12 +93,11 @@ const Form = ({
             value={pensionRate}
             onChange={(e) => setPensionRate(e.target.value)}
           />
-          <label className='text-2xl font-semibold mb-2 block text-primary-700'>
-            Student loans
-          </label>
-          <div></div>
-          <div className='col-span-2'>
-            <div className='flex items-center space-x-4'>
+          <div>
+            <div className='flex items-center space-x-4 col-span-2'>
+              <label className='text-2xl font-semibold mb-2 block text-primary-700'>
+                Student loans
+              </label>
               <label className='label cursor-pointer font-medium text-lg'>
                 Plan 1
                 <input
@@ -126,12 +125,9 @@ const Form = ({
                   className='checkbox checkbox-primary h-5 w-5 ml-1'
                 />
               </label>
-              {/* </div> */}
             </div>
           </div>
         </div>
-        {/* <div className='flex flex-col'> */}
-
         <div className='flex justify-center'>
           <button className='btn btn-primary w-full max-w-xs' type='submit'>
             Calculate

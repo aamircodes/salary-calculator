@@ -17,7 +17,7 @@ const App = () => {
   return (
     <div className='min-h-screen'>
       <Header />
-      <main className='container mx-auto'>
+      <div className='container mx-auto flex-col'>
         <Form
           setGrossIncome={setGrossIncome}
           setTaxableIncome={setTaxableIncome}
@@ -29,7 +29,7 @@ const App = () => {
           setPgLoan={setPgLoan}
           setTakehome={setTakehome}
         />
-        <h1 className='flex justify-center text-lg font-bold'>Your results</h1>
+        <div className=' mb-64'></div>
         <Table
           grossIncome={grossIncome}
           taxableIncome={taxableIncome}
@@ -41,11 +41,11 @@ const App = () => {
           pgLoan={pgLoan}
           takehome={takehome}
         />
-        <div className='flex justify-center m-5'>
-          {' '}
-          <button className='btn btn-primary'>Recalculate</button>
-        </div>
-      </main>
+      </div>
+      <div className='flex justify-center m-5'>
+        {' '}
+        <button className='btn btn-primary'>Recalculate</button>
+      </div>
     </div>
   );
 };
