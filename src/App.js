@@ -17,7 +17,7 @@ const App = () => {
   return (
     <div className='min-h-screen'>
       <Header />
-      <main className='container mx-auto bg-red-300'>
+      <main className='container mx-auto'>
         <Form
           setGrossIncome={setGrossIncome}
           setTaxableIncome={setTaxableIncome}

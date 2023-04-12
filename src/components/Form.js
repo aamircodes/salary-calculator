@@ -66,24 +66,22 @@ const Form = ({
   };
 
   return (
-    <div className=' bg-primary-content rounded-lg my-8 p-8 shadow-md'>
-      <form className='flex flex-col space-y-6' onSubmit={handleSubmit}>
-        <div className='flex flex-row'>
-          <label className='text-3xl font-semibold mb-2 block text-primary-700'>
+    <div className='bg-primary-content rounded-lg shadow-md p-4 my-4'>
+      <form className='flex flex-col space-y-1' onSubmit={handleSubmit}>
+        <div className='grid gap-4 grid-cols-2 grid-rows-4 place-items-center'>
+          <label className='text-2xl font-semibold block text-primary-700'>
             Your annual salary £
           </label>
           <input
             type='number'
             placeholder='Type here'
-            className='input input-md input-bordered w-full max-w-xs'
+            className='input input-md leading-10 h-10 text-sm input-bordered w-full max-w-xs'
             step='0.01'
             min='0.01'
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
           />
-        </div>
-        <div className='flex flex-row'>
-          <label className='text-2xl font-semibold mb-2 block text-primary-700'>
+          <label className='text-2xl font-semibold block text-primary-700'>
             Pension contributions %
           </label>
           <input
@@ -95,41 +93,45 @@ const Form = ({
             value={pensionRate}
             onChange={(e) => setPensionRate(e.target.value)}
           />
-        </div>
-        <div className=''>
           <label className='text-2xl font-semibold mb-2 block text-primary-700'>
             Student loans
           </label>
-          <div className='flex items-center space-x-4'>
-            <label className='label cursor-pointer font-medium text-lg'>
-              Plan 1
-              <input
-                type='checkbox'
-                checked={isPlanOneChecked}
-                onChange={() => setIsPlanOneChecked(!isPlanOneChecked)}
-                className='checkbox'
-              />
-            </label>
-            <label className='label cursor-pointer font-medium text-lg'>
-              Plan 2
-              <input
-                type='checkbox'
-                checked={isPlanTwoChecked}
-                onChange={() => setIsPlanTwoChecked(!isPlanTwoChecked)}
-                className='checkbox'
-              />
-            </label>
-            <label className='label cursor-pointer font-medium text-lg'>
-              Postgraduate Loan
-              <input
-                type='checkbox'
-                checked={isPgChecked}
-                onChange={() => isSetPgChecked(!isPgChecked)}
-                className='checkbox'
-              />
-            </label>
+          <div></div>
+          <div className='col-span-2'>
+            <div className='flex items-center space-x-4'>
+              <label className='label cursor-pointer font-medium text-lg'>
+                Plan 1
+                <input
+                  type='checkbox'
+                  checked={isPlanOneChecked}
+                  onChange={() => setIsPlanOneChecked(!isPlanOneChecked)}
+                  className='checkbox h-5 w-5 ml-1'
+                />
+              </label>
+              <label className='label cursor-pointer font-medium text-lg'>
+                Plan 2
+                <input
+                  type='checkbox'
+                  checked={isPlanTwoChecked}
+                  onChange={() => setIsPlanTwoChecked(!isPlanTwoChecked)}
+                  className='checkbox h-5 w-5 ml-1'
+                />
+              </label>
+              <label className='label cursor-pointer font-medium text-lg'>
+                Postgraduate Loan
+                <input
+                  type='checkbox'
+                  checked={isPgChecked}
+                  onChange={() => isSetPgChecked(!isPgChecked)}
+                  className='checkbox h-5 w-5 ml-1'
+                />
+              </label>
+              {/* </div> */}
+            </div>
           </div>
         </div>
+        {/* <div className='flex flex-col'> */}
+
         <div className='flex justify-center'>
           <button className='btn btn-primary w-full max-w-xs' type='submit'>
             Calculate
