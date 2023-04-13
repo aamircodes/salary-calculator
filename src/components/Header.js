@@ -1,7 +1,12 @@
+import incomeIcon from '../logo.png';
+
 const Header = () => {
   return (
-    <header className='bg-base-200 text-center'>
-      <h1 className='text-4xl font-bold my-8'>Take Home Salary Calculator</h1>
+    <header className='text-center mt-4 mb-12 container mx-auto bg-base-300 rounded-lg'>
+      <div className='text-3xl font-bold py-4'>
+        <img className='inline w-8 h-8 mr-2 align-middle' src={incomeIcon} />{' '}
+        <span className='align-middle'>Take Home Salary Calculator</span>
+      </div>
     </header>
   );
 };

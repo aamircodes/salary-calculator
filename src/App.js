@@ -15,35 +15,33 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='min-h-screen flex flex-col bg-base-100'>
+    <div className='min-h-screen bg-base-100'>
       <Header />
-      <div className='container mx-auto'>
-        <div className='py-6 mt-10'>
-          <Form
-            setGrossIncome={setGrossIncome}
-            setTaxableIncome={setTaxableIncome}
-            setIncomeTax={setIncomeTax}
-            setPensionDeductions={setPensionDeductions}
-            setNiTax={setNiTax}
-            setPlan1Loan={setPlan1Loan}
-            setPlan2Loan={setPlan2Loan}
-            setPgLoan={setPgLoan}
-            setTakehome={setTakehome}
-          />
-        </div>
-        <div className='py-6 mt-10'>
-          <Table
-            grossIncome={grossIncome}
-            taxableIncome={taxableIncome}
-            incomeTax={incomeTax}
-            pensionDeductions={pensionDeductions}
-            niTax={niTax}
-            plan1Loan={plan1Loan}
-            plan2Loan={plan2Loan}
-            pgLoan={pgLoan}
-            takehome={takehome}
-          />
-        </div>
+      <div className='container mx-auto flex flex-col gap-12'>
+        <Form
+          setGrossIncome={setGrossIncome}
+          setTaxableIncome={setTaxableIncome}
+          setIncomeTax={setIncomeTax}
+          setPensionDeductions={setPensionDeductions}
+          setNiTax={setNiTax}
+          setPlan1Loan={setPlan1Loan}
+          setPlan2Loan={setPlan2Loan}
+          setPgLoan={setPgLoan}
+          setTakehome={setTakehome}
+        />
+
+        <Table
+          grossIncome={grossIncome}
+          taxableIncome={taxableIncome}
+          incomeTax={incomeTax}
+          pensionDeductions={pensionDeductions}
+          niTax={niTax}
+          plan1Loan={plan1Loan}
+          plan2Loan={plan2Loan}
+          pgLoan={pgLoan}
+          takehome={takehome}
+        />
+
         <div className='flex justify-center py-6 mt-10'>
           <button className='btn btn-primary'>Recalculate</button>
         </div>

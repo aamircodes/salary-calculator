@@ -68,27 +68,30 @@ const Form = ({
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-200 rounded-lg shadow-md p-6'>
+      <section className='bg-base-200 rounded-lg shadow-md p-8 mx-2'>
         <form onSubmit={handleSubmit} flex flex-col>
-          <div className='grid grid-cols-2 gap-4'>
-            <label className='text-xl font-semibold text-primary-700 flex items-center'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 '>
+            <label className='text-xl font-semibold text-primary-700 flex items-center justify-center md:justify-start'>
               Your annual salary £
             </label>
-            <input
-              type='number'
-              placeholder='Type here'
-              className='input input-md leading-10 h-10 text-sm input-bordered w-full max-w-xs'
-              step='0.01'
-              min='0.01'
-              value={salary}
-              onChange={(e) => setSalary(e.target.value)}
-            />
+            <div className='flex justify-center md:justify-start'>
+              <input
+                type='number'
+                placeholder='Type here'
+                className='input input-md leading-10 h-10 text-sm input-bordered max-w-full sm:max-w-full'
+                step='0.01'
+                min='0.01'
+                value={salary}
+                onChange={(e) => setSalary(e.target.value)}
+                style={{ maxWidth: '100%' }} // Add this style
+              />
+            </div>
 
             <label className='text-xl font-semibold text-primary-700 flex items-center'>
               Pension contributions %
             </label>
             <input
-              className='input input-bordered w-full max-w-xs'
+              className='input input-bordered w-full sm:max-w-full'
               type='text'
               step='0.1'
               min='0.0'
@@ -96,8 +99,8 @@ const Form = ({
               value={pensionRate}
               onChange={(e) => setPensionRate(e.target.value)}
             />
-            <div className='flex items-center space-x-4 col-span-2'>
-              <label className='text-xl font-semibold block text-primary-700'>
+            <div className='flex items-center space-x-4 sm:flex-col md:flex-row sm:justify-start'>
+              <label className='text-xl font-semibold block text-primary-700 mr-32'>
                 Student loans
               </label>
               <label className='label cursor-pointer font-medium text-md'>
@@ -129,7 +132,7 @@ const Form = ({
               </label>
             </div>
           </div>
-          <div className='flex justify-center mt-2'>
+          <div className='flex justify-center mt-8'>
             <button className='btn btn-primary w-full max-w-xs' type='submit'>
               Calculate
             </button>

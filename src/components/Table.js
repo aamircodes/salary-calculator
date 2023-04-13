@@ -1,3 +1,5 @@
+import { formatCurrency } from '../utils/currencyUtils';
+
 const Table = ({
   grossIncome,
   taxableIncome,
@@ -30,66 +32,72 @@ const Table = ({
             <tbody>
               <tr>
                 <th>Gross income</th>
-                <td> {grossIncome}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{formatCurrency(grossIncome)}</td>
+                <td>{formatCurrency(grossIncome / 12)}</td>
+                <td>{formatCurrency(grossIncome / 52)}</td>
+                <td>{formatCurrency(grossIncome / 52 / 5)}</td>
               </tr>
               <tr>
                 <th>Pension Deductions </th>
-                <td>{pensionDeductions}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{formatCurrency(pensionDeductions)}</td>
+                <td>{formatCurrency(pensionDeductions / 12)}</td>
+                <td>{formatCurrency(pensionDeductions / 52)}</td>
+                <td>{formatCurrency(pensionDeductions / 52 / 5)}</td>
               </tr>
               <tr>
                 <th>Taxable income </th>
-                <td>{taxableIncome}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{formatCurrency(taxableIncome)}</td>
+                <td>{formatCurrency(taxableIncome / 12)}</td>
+                <td>{formatCurrency(taxableIncome / 52)}</td>
+                <td>{formatCurrency(taxableIncome / 52 / 5)}</td>
               </tr>
               <tr>
                 <th>Income Tax </th>
-                <td>{incomeTax}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{formatCurrency(incomeTax)}</td>
+                <td>{formatCurrency(incomeTax / 12)}</td>
+                <td>{formatCurrency(incomeTax / 52)}</td>
+                <td>{formatCurrency(incomeTax / 52 / 5)}</td>
               </tr>
               <tr>
                 <th>National Insurance </th>
-                <td>{niTax}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{formatCurrency(niTax)}</td>
+                <td>{formatCurrency(niTax / 12)}</td>
+                <td>{formatCurrency(niTax / 52)}</td>
+                <td>{formatCurrency(niTax / 52 / 5)}</td>
               </tr>
-              <tr>
-                <th>Student Loan 1 </th>
-                <td>{plan1Loan}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Student Loan 2 </th>
-                <td>{plan2Loan}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th>Postgraduate Loan</th>
-                <td>{pgLoan}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              {plan1Loan && (
+                <tr>
+                  <th>Student Loan 1</th>
+                  <td>{formatCurrency(plan1Loan)}</td>
+                  <td>{formatCurrency(plan1Loan / 12)}</td>
+                  <td>{formatCurrency(plan1Loan / 52)}</td>
+                  <td>{formatCurrency(plan1Loan / 52 / 5)}</td>
+                </tr>
+              )}
+              {plan2Loan && (
+                <tr>
+                  <th>Student Loan 2 </th>
+                  <td>{formatCurrency(plan2Loan)}</td>
+                  <td>{formatCurrency(plan2Loan / 12)}</td>
+                  <td>{formatCurrency(plan2Loan / 52)}</td>
+                  <td>{formatCurrency(plan2Loan / 52 / 5)}</td>
+                </tr>
+              )}
+              {pgLoan && (
+                <tr>
+                  <th>Postgraduate Loan</th>
+                  <td>{formatCurrency(pgLoan)}</td>
+                  <td>{formatCurrency(pgLoan / 12)}</td>
+                  <td>{formatCurrency(pgLoan / 52)}</td>
+                  <td>{formatCurrency(pgLoan / 52 / 5)}</td>
+                </tr>
+              )}
               <tr>
                 <th>2023 take home </th>
-                <td>{takehome}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{formatCurrency(takehome)}</td>
+                <td>{formatCurrency(takehome / 12)}</td>
+                <td>{formatCurrency(takehome / 52)}</td>
+                <td>{formatCurrency(takehome / 52 / 5)}</td>
               </tr>
             </tbody>
           </table>
