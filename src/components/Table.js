@@ -8,90 +8,92 @@ const Table = ({
   plan2Loan,
   pgLoan,
   takehome,
+  className,
 }) => {
   return (
-    <div className=' rounded-lg bg-gray-300'>
-      {' '}
-      <h2 className='flex justify-center text-2xl font-bold py-2'>
-        Your results
-      </h2>
-      <div className='overflow-x-auto py-2'>
-        <table className='table table-zebra w-full'>
-          <thead>
-            <tr>
-              <th className='bg-secondary-focus'></th>
-              <th className='bg-secondary-focus'>Year</th>
-              <th className='bg-secondary-focus'>Month</th>
-              <th className='bg-secondary-focus'>Week</th>
-              <th className='bg-secondary-focus'>Day</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Gross income</th>
-              <td> {grossIncome}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Pension Deductions </th>
-              <td>{pensionDeductions}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Taxable income </th>
-              <td>{taxableIncome}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Income Tax </th>
-              <td>{incomeTax}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>National Insurance </th>
-              <td>{niTax}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Student Loan 1 </th>
-              <td>{plan1Loan}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Student Loan 2 </th>
-              <td>{plan2Loan}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>Postgraduate Loan</th>
-              <td>{pgLoan}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th className='bg-secondary-focus'>2023 take home </th>
-              <td className='bg-secondary-focus'>{takehome}</td>
-              <td className='bg-secondary-focus'></td>
-              <td className='bg-secondary-focus'></td>
-              <td className='bg-secondary-focus'> </td>
-            </tr>
-          </tbody>
-        </table>
+    <div className={`${className}`}>
+      <div className='rounded-lg bg-base-300 my-2'>
+        <h2 className='flex justify-center text-2xl font-bold pt-3'>
+          Your results
+        </h2>
+        <div className='overflow-x-auto py-4 px-1'>
+          <table className='table table-zebra w-full'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Week</th>
+                <th>Day</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Gross income</th>
+                <td> {grossIncome}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Pension Deductions </th>
+                <td>{pensionDeductions}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Taxable income </th>
+                <td>{taxableIncome}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Income Tax </th>
+                <td>{incomeTax}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>National Insurance </th>
+                <td>{niTax}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Student Loan 1 </th>
+                <td>{plan1Loan}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Student Loan 2 </th>
+                <td>{plan2Loan}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Postgraduate Loan</th>
+                <td>{pgLoan}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>2023 take home </th>
+                <td>{takehome}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

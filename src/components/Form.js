@@ -21,6 +21,7 @@ const Form = ({
   setPlan2Loan,
   setPgLoan,
   setTakehome,
+  className,
 }) => {
   const [salary, setSalary] = useState('');
   const [pensionRate, setPensionRate] = useState('');
@@ -66,39 +67,40 @@ const Form = ({
   };
 
   return (
-    <div className='bg-primary-content rounded-lg shadow-md p-4'>
-      <form className='flex flex-col space-y-4' onSubmit={handleSubmit}>
-        <div className='grid gap-4 grid-cols-2 grid-rows-3 place-items-start p-4'>
-          <label className='text-2xl font-semibold block text-primary-700'>
-            Your annual salary £
-          </label>
-          <input
-            type='number'
-            placeholder='Type here'
-            className='input input-md leading-10 h-10 text-sm input-bordered w-full max-w-xs'
-            step='0.01'
-            min='0.01'
-            value={salary}
-            onChange={(e) => setSalary(e.target.value)}
-          />
-          <label className='text-2xl font-semibold block text-primary-700'>
-            Pension contributions %
-          </label>
-          <input
-            className='input input-bordered w-full max-w-xs'
-            type='text'
-            step='0.1'
-            min='0.0'
-            placeholder='5%'
-            value={pensionRate}
-            onChange={(e) => setPensionRate(e.target.value)}
-          />
-          <div>
+    <div className={`${className}`}>
+      <section className='bg-base-200 rounded-lg shadow-md p-6'>
+        <form onSubmit={handleSubmit} flex flex-col>
+          <div className='grid grid-cols-2 gap-4'>
+            <label className='text-xl font-semibold text-primary-700 flex items-center'>
+              Your annual salary £
+            </label>
+            <input
+              type='number'
+              placeholder='Type here'
+              className='input input-md leading-10 h-10 text-sm input-bordered w-full max-w-xs'
+              step='0.01'
+              min='0.01'
+              value={salary}
+              onChange={(e) => setSalary(e.target.value)}
+            />
+
+            <label className='text-xl font-semibold text-primary-700 flex items-center'>
+              Pension contributions %
+            </label>
+            <input
+              className='input input-bordered w-full max-w-xs'
+              type='text'
+              step='0.1'
+              min='0.0'
+              placeholder='5%'
+              value={pensionRate}
+              onChange={(e) => setPensionRate(e.target.value)}
+            />
             <div className='flex items-center space-x-4 col-span-2'>
-              <label className='text-2xl font-semibold mb-2 block text-primary-700'>
+              <label className='text-xl font-semibold block text-primary-700'>
                 Student loans
               </label>
-              <label className='label cursor-pointer font-medium text-lg'>
+              <label className='label cursor-pointer font-medium text-md'>
                 Plan 1
                 <input
                   type='checkbox'
@@ -107,7 +109,7 @@ const Form = ({
                   className='checkbox checkbox-primary h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer font-medium text-lg'>
+              <label className='label cursor-pointer font-medium text-md'>
                 Plan 2
                 <input
                   type='checkbox'
@@ -116,7 +118,7 @@ const Form = ({
                   className='checkbox checkbox-primary h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer font-medium text-lg'>
+              <label className='label cursor-pointer font-medium text-md'>
                 Postgraduate Loan
                 <input
                   type='checkbox'
@@ -127,13 +129,13 @@ const Form = ({
               </label>
             </div>
           </div>
-        </div>
-        <div className='flex justify-center'>
-          <button className='btn btn-primary w-full max-w-xs' type='submit'>
-            Calculate
-          </button>
-        </div>
-      </form>
+          <div className='flex justify-center mt-2'>
+            <button className='btn btn-primary w-full max-w-xs' type='submit'>
+              Calculate
+            </button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 };
