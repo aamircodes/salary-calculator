@@ -27,7 +27,7 @@ const Form = ({
   const [pensionRate, setPensionRate] = useState('');
   const [isPlanOneChecked, setIsPlanOneChecked] = useState(false);
   const [isPlanTwoChecked, setIsPlanTwoChecked] = useState(false);
-  const [isPgChecked, isSetPgChecked] = useState(false);
+  const [isPgChecked, setIsPgChecked] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,66 +68,62 @@ const Form = ({
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-200 rounded-lg shadow-md p-8 mx-2'>
-        <form onSubmit={handleSubmit} flex flex-col>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 '>
-            <label className='text-xl font-semibold text-primary-700 flex items-center justify-center md:justify-start'>
+      <section className='bg-base-200 rounded-lg shadow-md p-4 sm:p-6 mx-1 sm:mx-2'>
+        <form onSubmit={handleSubmit}>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 p-1 items-center justify-center'>
+            <label className='text-lg sm:text-xl md:text-2xl font-semibold text-primary-700  text-center md:text-start'>
               Your annual salary £
             </label>
-            <div className='flex justify-center md:justify-start'>
-              <input
-                type='number'
-                placeholder='Type here'
-                className='input input-md leading-10 h-10 text-sm input-bordered max-w-full sm:max-w-full'
-                step='0.01'
-                min='0.01'
-                value={salary}
-                onChange={(e) => setSalary(e.target.value)}
-                style={{ maxWidth: '100%' }} // Add this style
-              />
-            </div>
-
-            <label className='text-xl font-semibold text-primary-700 flex items-center'>
+            <input
+              type='number'
+              placeholder='0'
+              className='input input-md leading-10 h-10 text-sm input-bordered  md:w-1/2 mx-auto md:mx-0'
+              step='0.01'
+              min='0'
+              value={salary}
+              onChange={(e) => setSalary(e.target.value)}
+            />
+            <label className='text-lg sm:text-xl md:text-2xl font-semibold text-primary-700  text-center md:text-start'>
               Pension contributions %
             </label>
             <input
-              className='input input-bordered w-full sm:max-w-full'
-              type='text'
-              step='0.1'
-              min='0.0'
-              placeholder='5%'
+              className='input input-md leading-10 h-10 text-sm input-bordered  md:w-1/2 mx-auto md:mx-0'
+              type='number'
+              step='0.01'
+              min='0'
+              placeholder='0'
               value={pensionRate}
               onChange={(e) => setPensionRate(e.target.value)}
             />
-            <div className='flex items-center space-x-4 sm:flex-col md:flex-row sm:justify-start'>
-              <label className='text-xl font-semibold block text-primary-700 mr-32'>
-                Student loans
-              </label>
-              <label className='label cursor-pointer font-medium text-md'>
+            <label className='text-lg sm:text-xl md:text-2xl font-semibold text-primary-700  text-center md:text-start'>
+              Student loans
+            </label>
+            <div className='flex flex-row space-x-2 justify-center md:justify-start'>
+              <label className='label cursor-pointer font-medium '>
                 Plan 1
                 <input
                   type='checkbox'
                   checked={isPlanOneChecked}
                   onChange={() => setIsPlanOneChecked(!isPlanOneChecked)}
-                  className='checkbox checkbox-primary h-5 w-5 ml-1'
+                  className='checkbox h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer font-medium text-md'>
+              <label className='label cursor-pointer font-medium'>
                 Plan 2
                 <input
                   type='checkbox'
                   checked={isPlanTwoChecked}
                   onChange={() => setIsPlanTwoChecked(!isPlanTwoChecked)}
-                  className='checkbox checkbox-primary h-5 w-5 ml-1'
+                  className='checkbox h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer font-medium text-md'>
+              <label className='label cursor-pointer font-medium'>
                 Postgraduate Loan
                 <input
                   type='checkbox'
                   checked={isPgChecked}
-                  onChange={() => isSetPgChecked(!isPgChecked)}
-                  className='checkbox checkbox-primary h-5 w-5 ml-1'
+                  onChange={() => setIsPgChecked(!isPgChecked)}
+                  className='checkbox h-5 w-5 ml-1'
                 />
               </label>
             </div>

@@ -2,17 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@layer base {
-    html {
-        font-family: Poppins-Semibold, Arial, sans-serif;
-    }
-}
-
 .table th {
     border-right: 1px solid #f7f7f7;
 }
 
 .table td {
     border-right: 1px solid #f7f7f7;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

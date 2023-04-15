@@ -15,7 +15,7 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='min-h-screen bg-base-100'>
+    <div className='min-h-screen bg-base-300'>
       <Header />
       <div className='container mx-auto flex flex-col gap-12'>
         <Form

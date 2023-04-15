@@ -14,7 +14,7 @@ const Table = ({
 }) => {
   return (
     <div className={`${className}`}>
-      <div className='rounded-lg bg-base-300 my-2'>
+      <div className='rounded-lg bg-base-200 my-2'>
         <h2 className='flex justify-center text-2xl font-bold pt-3'>
           Your results
         </h2>
@@ -23,7 +23,7 @@ const Table = ({
             <thead>
               <tr>
                 <th></th>
-                <th>Year</th>
+                <th className='bg-primary'>Year</th>
                 <th>Month</th>
                 <th>Week</th>
                 <th>Day</th>
