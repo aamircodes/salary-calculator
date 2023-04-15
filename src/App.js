@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Form from './components/Form';
 import Table from './components/Table';
 import Header from './components/Header';
+import RecalculateButton from './components/RecalculateButton';
 
 const App = () => {
+  const tableRef = useRef(null);
+  const formRef = useRef(null);
+
   const [grossIncome, setGrossIncome] = useState(null);
   const [taxableIncome, setTaxableIncome] = useState(null);
   const [incomeTax, setIncomeTax] = useState('');
@@ -15,10 +19,13 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='min-h-screen bg-base-300'>
+    <div className='container mx-auto flex flex-col gap-12 bg-base-100'>
       <Header />
-      <div className='container mx-auto flex flex-col gap-12'>
+      <div ref={formRef}>
         <Form
+          scrollDown={() =>
+            tableRef.current.scrollIntoView({ behavior: 'smooth' })
+          }
           setGrossIncome={setGrossIncome}
           setTaxableIncome={setTaxableIncome}
           setIncomeTax={setIncomeTax}
@@ -29,8 +36,10 @@ const App = () => {
           setPgLoan={setPgLoan}
           setTakehome={setTakehome}
         />
-
+      </div>
+      <div ref={tableRef}>
         <Table
+          className='my-12'
           grossIncome={grossIncome}
           taxableIncome={taxableIncome}
           incomeTax={incomeTax}
@@ -41,10 +50,21 @@ const App = () => {
           pgLoan={pgLoan}
           takehome={takehome}
         />
-
-        <div className='flex justify-center py-6 mt-10'>
-          <button className='btn btn-primary'>Recalculate</button>
-        </div>
+      </div>
+      <div className='mb-4'>
+        <RecalculateButton
+          scrollUp={() =>
+            formRef.current.scrollIntoView({ behavior: 'smooth' })
+          }
+        />
+      </div>
+      <div>
+        <div class='divider p-12'></div>
+        <footer className='footer footer-center'>
+          <div>
+            <p> 'twitter icon' Tweet me with any feedback here</p>
+          </div>
+        </footer>
       </div>
     </div>
   );

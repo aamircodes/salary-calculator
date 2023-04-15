@@ -22,6 +22,7 @@ const Form = ({
   setPgLoan,
   setTakehome,
   className,
+  scrollDown,
 }) => {
   const [salary, setSalary] = useState('');
   const [pensionRate, setPensionRate] = useState('');
@@ -64,14 +65,15 @@ const Form = ({
     setPlan2Loan(plan2Loan);
     setPgLoan(pgLoan);
     setTakehome(takehome);
+    scrollDown();
   };
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-200 rounded-lg shadow-md p-4 sm:p-6 mx-1 sm:mx-2'>
-        <form onSubmit={handleSubmit}>
+      <section className='bg-base-300 rounded-lg shadow-md p-4 sm:p-6 '>
+        <form onSubmit={handleSubmit} className='mx-auto'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 p-1 items-center justify-center'>
-            <label className='text-lg sm:text-xl md:text-2xl font-semibold text-primary-700  text-center md:text-start'>
+            <label className='text-lg sm:text-xl md:text-2xl text-center md:text-start font-semibold'>
               Your annual salary £
             </label>
             <input
@@ -83,7 +85,7 @@ const Form = ({
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
             />
-            <label className='text-lg sm:text-xl md:text-2xl font-semibold text-primary-700  text-center md:text-start'>
+            <label className='text-lg sm:text-xl md:text-2xl font-semibold  text-center md:text-start'>
               Pension contributions %
             </label>
             <input
@@ -95,7 +97,7 @@ const Form = ({
               value={pensionRate}
               onChange={(e) => setPensionRate(e.target.value)}
             />
-            <label className='text-lg sm:text-xl md:text-2xl font-semibold text-primary-700  text-center md:text-start'>
+            <label className='text-lg sm:text-xl md:text-2xl font-semibold   text-center md:text-start'>
               Student loans
             </label>
             <div className='flex flex-row space-x-2 justify-center md:justify-start'>
@@ -128,8 +130,8 @@ const Form = ({
               </label>
             </div>
           </div>
-          <div className='flex justify-center mt-8'>
-            <button className='btn btn-primary w-full max-w-xs' type='submit'>
+          <div className='flex justify-center mt-4 '>
+            <button className='btn btn-wide' type='submit'>
               Calculate
             </button>
           </div>
