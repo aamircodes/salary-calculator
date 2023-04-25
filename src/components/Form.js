@@ -32,40 +32,44 @@ const Form = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const pensionPercentageDivided = pensionRate / 100;
-    const grossIncome = calculateGrossIncome(salary);
-    const taxableIncome = calculateTaxableIncome(
-      salary,
-      pensionPercentageDivided
-    );
-    const incomeTax = calculateIncomeTax(salary, pensionPercentageDivided);
-    const pensionDeductions = calculatePensionDeductions(
-      salary,
-      pensionPercentageDivided
-    );
-    const niTax = calculateNiTax(salary);
+    if (salary > 0 && pensionRate !== '' && pensionRate >= 0) {
+      const pensionPercentageDivided = pensionRate / 100;
+      const grossIncome = calculateGrossIncome(salary);
+      const taxableIncome = calculateTaxableIncome(
+        salary,
+        pensionPercentageDivided
+      );
+      const incomeTax = calculateIncomeTax(salary, pensionPercentageDivided);
+      const pensionDeductions = calculatePensionDeductions(
+        salary,
+        pensionPercentageDivided
+      );
+      const niTax = calculateNiTax(salary);
 
-    const plan1Loan = isPlanOneChecked
-      ? calculatePlanOneLoan(salary, isPlanTwoChecked)
-      : '';
-    const plan2Loan = isPlanTwoChecked ? calculatePlanTwoLoan(salary) : '';
-    const pgLoan = isPgChecked ? calculatePgLoan(salary) : '';
-    const takehome = calculateTakehome(
-      salary,
-      pensionRate / 100,
-      isPlanOneChecked
-    );
+      const plan1Loan = isPlanOneChecked
+        ? calculatePlanOneLoan(salary, isPlanTwoChecked)
+        : '';
+      const plan2Loan = isPlanTwoChecked ? calculatePlanTwoLoan(salary) : '';
+      const pgLoan = isPgChecked ? calculatePgLoan(salary) : '';
+      const takehome = calculateTakehome(
+        salary,
+        pensionRate / 100,
+        isPlanOneChecked
+      );
 
-    setGrossIncome(grossIncome);
-    setTaxableIncome(taxableIncome);
-    setIncomeTax(incomeTax);
-    setPensionDeductions(pensionDeductions);
-    setNiTax(niTax);
-    setPlan1Loan(plan1Loan);
-    setPlan2Loan(plan2Loan);
-    setPgLoan(pgLoan);
-    setTakehome(takehome);
-    scrollDown();
+      setGrossIncome(grossIncome);
+      setTaxableIncome(taxableIncome);
+      setIncomeTax(incomeTax);
+      setPensionDeductions(pensionDeductions);
+      setNiTax(niTax);
+      setPlan1Loan(plan1Loan);
+      setPlan2Loan(plan2Loan);
+      setPgLoan(pgLoan);
+      setTakehome(takehome);
+      scrollDown();
+    } else {
+      console.log('error mate');
+    }
   };
 
   return (
@@ -78,10 +82,11 @@ const Form = ({
             </label>
             <input
               type='number'
-              placeholder='0'
+              placeholder=''
               className='input input-md leading-10 h-10 text-sm input-bordered  md:w-1/2 mx-auto md:mx-0'
               step='0.01'
-              min='0'
+              min={0}
+              required
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
             />
@@ -92,8 +97,10 @@ const Form = ({
               className='input input-md leading-10 h-10 text-sm input-bordered  md:w-1/2 mx-auto md:mx-0'
               type='number'
               step='0.01'
-              min='0'
-              placeholder='0'
+              min={0}
+              max={100}
+              required
+              placeholder=''
               value={pensionRate}
               onChange={(e) => setPensionRate(e.target.value)}
             />

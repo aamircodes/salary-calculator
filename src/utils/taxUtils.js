@@ -124,12 +124,6 @@ export function calculateTakehome(
   isPlan2Checked,
   isPgChecked
 ) {
-  console.log(
-    calculatePensionDeductions(salary, pensionPercentage),
-    calculateIncomeTax(salary, pensionPercentage),
-    calculateNiTax(salary),
-    calculatePlanOneLoan(salary, isPlan2Checked)
-  );
   return (
     salary -
     calculatePensionDeductions(salary, pensionPercentage) -

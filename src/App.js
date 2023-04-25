@@ -19,7 +19,7 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='container mx-auto flex flex-col gap-12 bg-base-100'>
+    <div className='container max-w-3xl mx-auto flex flex-col gap-12 bg-base-100'>
       <Header />
       <div ref={formRef}>
         <Form
@@ -59,7 +59,7 @@ const App = () => {
         />
       </div>
       <div>
-        <div class='divider p-12'></div>
+        <div className='divider p-12'></div>
         <footer className='footer footer-center'>
           <div>
             <p> 'twitter icon' Tweet me with any feedback here</p>
