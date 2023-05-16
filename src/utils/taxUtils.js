@@ -14,14 +14,14 @@ export function calculateGrossIncome(salary) {
   return salary;
 }
 
-function calculatePersonalAllowance(salary) {
+function calculatePersonalAllowance(salary, pensionPercentage) {
   const pa =
     salary <= 100000
       ? PERSONAL_ALLOWANCE
       : salary > 100000 && salary < 125140
       ? PERSONAL_ALLOWANCE - (salary - 100000) * 0.5
       : 0;
-
+  // 110000 =>
   return pa;
 }
 
@@ -31,6 +31,7 @@ export function calculateTaxableIncome(salary, pensionPercentage) {
     salary,
     pensionPercentage
   );
+  console.log(personalAllowance, pensionDeductions);
   return Math.max(salary - personalAllowance - pensionDeductions, 0);
 }
 
@@ -120,7 +121,7 @@ export function calculatePgLoan(salary) {
 export function calculateTakehome(
   salary,
   pensionPercentage,
-  isPlan1Checked,
+  isPlanOneChecked,
   isPlan2Checked,
   isPgChecked
 ) {
@@ -129,7 +130,7 @@ export function calculateTakehome(
     calculatePensionDeductions(salary, pensionPercentage) -
     calculateIncomeTax(salary, pensionPercentage) -
     calculateNiTax(salary) -
-    (isPlan1Checked ? calculatePlanOneLoan(salary, isPlan2Checked) : 0) -
+    (isPlanOneChecked ? calculatePlanOneLoan(salary, isPlan2Checked) : 0) -
     (isPlan2Checked ? calculatePlanTwoLoan(salary) : 0) -
     (isPgChecked ? calculatePgLoan(salary) : 0)
   );

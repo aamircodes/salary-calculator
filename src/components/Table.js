@@ -6,7 +6,7 @@ const Table = ({
   incomeTax,
   pensionDeductions,
   niTax,
-  plan1Loan,
+  planOneLoan,
   plan2Loan,
   pgLoan,
   takehome,
@@ -65,13 +65,13 @@ const Table = ({
                 <td>{formatCurrency(niTax / 52)}</td>
                 <td>{formatCurrency(niTax / 52 / 5)}</td>
               </tr>
-              {plan1Loan > 0 && (
+              {planOneLoan > 0 && (
                 <tr>
                   <th className='font-semibold'>Student Loan 1</th>
-                  <td>{formatCurrency(plan1Loan)}</td>
-                  <td>{formatCurrency(plan1Loan / 12)}</td>
-                  <td>{formatCurrency(plan1Loan / 52)}</td>
-                  <td>{formatCurrency(plan1Loan / 52 / 5)}</td>
+                  <td>{formatCurrency(planOneLoan)}</td>
+                  <td>{formatCurrency(planOneLoan / 12)}</td>
+                  <td>{formatCurrency(planOneLoan / 52)}</td>
+                  <td>{formatCurrency(planOneLoan / 52 / 5)}</td>
                 </tr>
               )}
               {plan2Loan > 0 && (

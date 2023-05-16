@@ -17,7 +17,7 @@ const Form = ({
   setIncomeTax,
   setPensionDeductions,
   setNiTax,
-  setPlan1Loan,
+  setPlanOneLoan,
   setPlan2Loan,
   setPgLoan,
   setTakehome,
@@ -46,7 +46,7 @@ const Form = ({
       );
       const niTax = calculateNiTax(salary);
 
-      const plan1Loan = isPlanOneChecked
+      const planOneLoan = isPlanOneChecked
         ? calculatePlanOneLoan(salary, isPlanTwoChecked)
         : '';
       const plan2Loan = isPlanTwoChecked ? calculatePlanTwoLoan(salary) : '';
@@ -54,7 +54,9 @@ const Form = ({
       const takehome = calculateTakehome(
         salary,
         pensionRate / 100,
-        isPlanOneChecked
+        isPlanOneChecked,
+        isPlanTwoChecked,
+        isPgChecked
       );
 
       setGrossIncome(grossIncome);
@@ -62,7 +64,7 @@ const Form = ({
       setIncomeTax(incomeTax);
       setPensionDeductions(pensionDeductions);
       setNiTax(niTax);
-      setPlan1Loan(plan1Loan);
+      setPlanOneLoan(planOneLoan);
       setPlan2Loan(plan2Loan);
       setPgLoan(pgLoan);
       setTakehome(takehome);
@@ -76,14 +78,14 @@ const Form = ({
     <div className={`${className}`}>
       <section className='bg-base-300 rounded-lg shadow-md p-4 sm:p-6 '>
         <form onSubmit={handleSubmit} className='mx-auto'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 p-1 items-center justify-center'>
+          <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 p-1 items-center justify-center'>
             <label className='text-lg sm:text-xl md:text-2xl text-center md:text-start font-semibold'>
               Your annual salary £
             </label>
             <input
               type='number'
               placeholder=''
-              className='input input-md leading-10 h-10 text-sm input-bordered  md:w-1/2 mx-auto md:mx-0'
+              className='input input-md leading-10 h-10 text-sm input-bordered  md:w-3/4 mx-auto md:mx-0'
               step='0.01'
               min={0}
               required
@@ -94,11 +96,10 @@ const Form = ({
               Pension contributions %
             </label>
             <input
-              className='input input-md leading-10 h-10 text-sm input-bordered  md:w-1/2 mx-auto md:mx-0'
+              className='input input-md leading-10 h-10 input-bordered md:w-3/4 mx-auto md:mx-0'
               type='number'
               step='0.01'
               min={0}
-              max={100}
               required
               placeholder=''
               value={pensionRate}
