@@ -24,15 +24,15 @@ const Form = ({
   className,
   scrollDown,
 }) => {
-  const [salary, setSalary] = useState('');
-  const [pensionRate, setPensionRate] = useState('');
+  const [salary, setSalary] = useState(0);
+  const [pensionRate, setPensionRate] = useState(0);
   const [isPlanOneChecked, setIsPlanOneChecked] = useState(false);
   const [isPlanTwoChecked, setIsPlanTwoChecked] = useState(false);
   const [isPgChecked, setIsPgChecked] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (salary > 0 && pensionRate !== '' && pensionRate >= 0) {
+    if (salary > 0 && pensionRate >= 0) {
       const pensionPercentageDivided = pensionRate / 100;
       const grossIncome = calculateGrossIncome(salary);
       const taxableIncome = calculateTaxableIncome(
@@ -53,7 +53,7 @@ const Form = ({
       const pgLoan = isPgChecked ? calculatePgLoan(salary) : '';
       const takehome = calculateTakehome(
         salary,
-        pensionRate / 100,
+        pensionPercentageDivided,
         isPlanOneChecked,
         isPlanTwoChecked,
         isPgChecked
@@ -84,7 +84,7 @@ const Form = ({
             </label>
             <input
               type='number'
-              placeholder=''
+              placeholder='enter salary'
               className='input input-md leading-10 h-10 text-sm input-bordered  md:w-3/4 mx-auto md:mx-0'
               step='0.01'
               min={0}
@@ -101,7 +101,7 @@ const Form = ({
               step='0.01'
               min={0}
               required
-              placeholder=''
+              placeholder='enter pension'
               value={pensionRate}
               onChange={(e) => setPensionRate(e.target.value)}
             />

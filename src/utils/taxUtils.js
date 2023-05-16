@@ -14,55 +14,54 @@ export function calculateGrossIncome(salary) {
   return salary;
 }
 
-function calculatePersonalAllowance(salary, pensionPercentage) {
-  const pa =
-    salary <= 100000
-      ? PERSONAL_ALLOWANCE
-      : salary > 100000 && salary < 125140
-      ? PERSONAL_ALLOWANCE - (salary - 100000) * 0.5
-      : 0;
-  // 110000 =>
-  return pa;
-}
-
-export function calculateTaxableIncome(salary, pensionPercentage) {
-  const personalAllowance = calculatePersonalAllowance(salary);
-  const pensionDeductions = calculatePensionDeductions(
-    salary,
-    pensionPercentage
-  );
-  console.log(personalAllowance, pensionDeductions);
-  return Math.max(salary - personalAllowance - pensionDeductions, 0);
-}
-
 // employer pension scheme (no tax on this, income tax salary reduced by this amount)
 export function calculatePensionDeductions(salary, pensionPercentage) {
   const a = salary * pensionPercentage;
   return a;
 }
 
+function calculatePersonalAllowance(salary, pensionPercentage) {
+  const salaryAfterPensionDeduction = salary - salary * pensionPercentage;
+
+  const pa =
+    salaryAfterPensionDeduction <= 100000
+      ? PERSONAL_ALLOWANCE
+      : salaryAfterPensionDeduction > 100000 &&
+        salaryAfterPensionDeduction < 125140
+      ? PERSONAL_ALLOWANCE - (salaryAfterPensionDeduction - 100000) * 0.5
+      : 0;
+  return pa;
+}
+
+export function calculateTaxableIncome(salary, pensionPercentage) {
+  const personalAllowance = calculatePersonalAllowance(
+    salary,
+    pensionPercentage
+  );
+
+  const pensionDeductions = calculatePensionDeductions(
+    salary,
+    pensionPercentage
+  );
+
+  return Math.max(salary - personalAllowance - pensionDeductions, 0);
+}
+
 export function calculateIncomeTax(salary, pensionPercentage) {
-  let income = salary - calculatePensionDeductions(salary, pensionPercentage);
+  let income = calculateTaxableIncome(salary, pensionPercentage);
+  console.log(income);
   let tax = 0;
 
-  if (income <= PERSONAL_ALLOWANCE) {
-    return tax;
+  if (income >= 112570) {
+    tax += (income - 112570) * INCOME_TAX_RATE_ADDITIONAL;
+    income = 112570;
   }
-  if (income > HIGHER_RATE_THRESHOLD) {
-    tax += (income - HIGHER_RATE_THRESHOLD) * INCOME_TAX_RATE_ADDITIONAL;
-    income = HIGHER_RATE_THRESHOLD;
-  }
-  if (income > BASIC_RATE_THRESHOLD) {
-    tax += (income - BASIC_RATE_THRESHOLD) * INCOME_TAX_RATE_HIGHER;
-    income = BASIC_RATE_THRESHOLD;
-  }
-  if (income > PERSONAL_ALLOWANCE) {
-    tax += (income - PERSONAL_ALLOWANCE) * INCOME_TAX_RATE_BASIC;
-    income = PERSONAL_ALLOWANCE;
+  if (income >= 37700) {
+    tax += (income - 37700) * INCOME_TAX_RATE_HIGHER;
+    income = 37700;
   }
   if (income > 0) {
-    const personalAllowance = calculatePersonalAllowance(salary);
-    tax += (income - personalAllowance) * INCOME_TAX_RATE_HIGHER;
+    tax += income * INCOME_TAX_RATE_BASIC;
   }
 
   return tax;
