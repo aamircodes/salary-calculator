@@ -3,6 +3,8 @@ import Form from './components/Form';
 import Table from './components/Table';
 import Header from './components/Header';
 import RecalculateButton from './components/RecalculateButton';
+import TakehomeText from './components/TakehomeText';
+import Footer from './components/Footer';
 
 const App = () => {
   const tableRef = useRef(null);
@@ -19,7 +21,8 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='container max-w-3xl mx-auto flex flex-col gap-12 bg-base-100'>
+    // <div className='container max-w-3xl mx-auto flex flex-col gap-12 bg-base-100'>
+    <div className='max-w-4xl mx-auto flex flex-col gap-4 sm:gap-12 bg-base-100'>
       <Header />
       <div ref={formRef}>
         <Form
@@ -39,7 +42,7 @@ const App = () => {
       </div>
       <div ref={tableRef}>
         <Table
-          className='my-12'
+          className='mt-12'
           grossIncome={grossIncome}
           taxableIncome={taxableIncome}
           incomeTax={incomeTax}
@@ -51,21 +54,15 @@ const App = () => {
           takehome={takehome}
         />
       </div>
-      <div className='mb-4'>
+      <TakehomeText percent={takehome} totalPay={grossIncome} />
+      <div>
         <RecalculateButton
           scrollUp={() =>
             formRef.current.scrollIntoView({ behavior: 'smooth' })
           }
         />
       </div>
-      <div>
-        <div className='divider p-12'></div>
-        <footer className='footer footer-center'>
-          <div>
-            <p> 'twitter icon' Tweet me with any feedback here</p>
-          </div>
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 };

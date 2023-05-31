@@ -24,8 +24,8 @@ const Form = ({
   className,
   scrollDown,
 }) => {
-  const [salary, setSalary] = useState(0);
-  const [pensionRate, setPensionRate] = useState(0);
+  const [salary, setSalary] = useState();
+  const [pensionRate, setPensionRate] = useState();
   const [isPlanOneChecked, setIsPlanOneChecked] = useState(false);
   const [isPlanTwoChecked, setIsPlanTwoChecked] = useState(false);
   const [isPgChecked, setIsPgChecked] = useState(false);
@@ -76,7 +76,7 @@ const Form = ({
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-300 rounded-lg shadow-md p-4 sm:p-6 '>
+      <section className='bg-base-300 rounded-lg shadow-md p-4 sm:p-6'>
         <form onSubmit={handleSubmit} className='mx-auto'>
           <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 p-1 items-center justify-center'>
             <label className='text-lg sm:text-xl md:text-2xl text-center md:text-start font-semibold'>
@@ -85,7 +85,7 @@ const Form = ({
             <input
               type='number'
               placeholder='enter salary'
-              className='input input-md leading-10 h-10 text-sm input-bordered  md:w-3/4 mx-auto md:mx-0'
+              className='input input-md h-10 input-borderer mx-20'
               step='0.01'
               min={0}
               required
@@ -96,10 +96,11 @@ const Form = ({
               Pension contributions %
             </label>
             <input
-              className='input input-md leading-10 h-10 input-bordered md:w-3/4 mx-auto md:mx-0'
+              className='input input-md h-10 input-bordered mx-20 sm:mx-20'
               type='number'
               step='0.01'
               min={0}
+              max={100}
               required
               placeholder='enter pension'
               value={pensionRate}
@@ -109,7 +110,7 @@ const Form = ({
               Student loans
             </label>
             <div className='flex flex-row space-x-2 justify-center md:justify-start'>
-              <label className='label cursor-pointer font-medium '>
+              <label className='label cursor-pointer font-medium'>
                 Plan 1
                 <input
                   type='checkbox'
