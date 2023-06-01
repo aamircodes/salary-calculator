@@ -76,10 +76,10 @@ const Form = ({
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-300 rounded-lg shadow-md p-4 sm:p-6'>
+      <section className='bg-base-300 rounded-lg shadow-md px-4 py-6 sm:pl-8'>
         <form onSubmit={handleSubmit} className='mx-auto'>
           <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 p-1 items-center justify-center'>
-            <label className='text-lg sm:text-xl md:text-2xl text-center md:text-start font-semibold'>
+            <label className='text-lg sm:text-xl text-center md:text-start font-semibold'>
               Your annual salary £
             </label>
             <input
@@ -92,11 +92,11 @@ const Form = ({
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
             />
-            <label className='text-lg sm:text-xl md:text-2xl font-semibold  text-center md:text-start'>
+            <label className='text-lg sm:text-xl font-semibold text-center md:text-start'>
               Pension contributions %
             </label>
             <input
-              className='input input-md h-10 input-bordered mx-20 sm:mx-20'
+              className='input input-md h-10 input-bordered mx-20'
               type='number'
               step='0.01'
               min={0}
@@ -106,10 +106,10 @@ const Form = ({
               value={pensionRate}
               onChange={(e) => setPensionRate(e.target.value)}
             />
-            <label className='text-lg sm:text-xl md:text-2xl font-semibold   text-center md:text-start'>
-              Student loans
+            <label className='text-lg sm:text-xl font-semibold text-center md:text-start'>
+              Student loan plan
             </label>
-            <div className='flex flex-row space-x-2 justify-center md:justify-start'>
+            <div className='flex flex-row sm:space-x-2 justify-center md:justify-start'>
               <label className='label cursor-pointer font-medium'>
                 Plan 1
                 <input
@@ -139,7 +139,7 @@ const Form = ({
               </label>
             </div>
           </div>
-          <div className='flex justify-center mt-4 '>
+          <div className='flex justify-center mt-4'>
             <button className='btn btn-wide' type='submit'>
               Calculate
             </button>

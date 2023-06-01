@@ -21,7 +21,6 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    // <div className='container max-w-3xl mx-auto flex flex-col gap-12 bg-base-100'>
     <div className='max-w-4xl mx-auto flex flex-col gap-4 sm:gap-12 bg-base-100'>
       <Header />
       <div ref={formRef}>
@@ -55,13 +54,9 @@ const App = () => {
         />
       </div>
       <TakehomeText percent={takehome} totalPay={grossIncome} />
-      <div>
-        <RecalculateButton
-          scrollUp={() =>
-            formRef.current.scrollIntoView({ behavior: 'smooth' })
-          }
-        />
-      </div>
+      <RecalculateButton
+        scrollUp={() => formRef.current.scrollIntoView({ behavior: 'smooth' })}
+      />
       <Footer />
     </div>
   );

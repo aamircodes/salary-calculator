@@ -16,7 +16,7 @@ const Table = ({
     <div className={`${className}`}>
       <div className='rounded-lg bg-base-300 shadow-md'>
         <h2 className='flex justify-center text-2xl font-bold pt-4'>
-          Your results
+          Your Results
         </h2>
         <div className='overflow-x-auto py-4 px-4'>
           <table className='table table-zebra w-full'>
@@ -31,28 +31,28 @@ const Table = ({
             </thead>
             <tbody>
               <tr className='font-semibold'>
-                <th className='font-semibold'>Gross Income</th>
+                <th className='font-medium'>Gross Income</th>
                 <td>{formatCurrency(grossIncome)}</td>
                 <td>{formatCurrency(grossIncome / 12)}</td>
                 <td>{formatCurrency(grossIncome / 52)}</td>
                 <td>{formatCurrency(grossIncome / 52 / 5)}</td>
               </tr>
               <tr>
-                <th className='font-semibold'>Pension Deductions</th>
+                <th className='font-medium'>Pension Deductions</th>
                 <td>{formatCurrency(pensionDeductions)}</td>
                 <td>{formatCurrency(pensionDeductions / 12)}</td>
                 <td>{formatCurrency(pensionDeductions / 52)}</td>
                 <td>{formatCurrency(pensionDeductions / 52 / 5)}</td>
               </tr>
               <tr>
-                <th className='font-semibold'>Taxable Income</th>
+                <th className='font-medium'>Taxable Income</th>
                 <td>{formatCurrency(taxableIncome)}</td>
                 <td>{formatCurrency(taxableIncome / 12)}</td>
                 <td>{formatCurrency(taxableIncome / 52)}</td>
                 <td>{formatCurrency(taxableIncome / 52 / 5)}</td>
               </tr>
               <tr>
-                <th className='font-semibold'>Income Tax</th>
+                <th className='font-medium'>Income Tax</th>
                 <td>{formatCurrency(incomeTax)}</td>
                 <td>{formatCurrency(incomeTax / 12)}</td>
                 <td>{formatCurrency(incomeTax / 52)}</td>
@@ -67,7 +67,7 @@ const Table = ({
               </tr>
               {planOneLoan > 0 && (
                 <tr>
-                  <th className='font-semibold'>Student Loan 1</th>
+                  <th className='font-medium'>Student Loan 1</th>
                   <td>{formatCurrency(planOneLoan)}</td>
                   <td>{formatCurrency(planOneLoan / 12)}</td>
                   <td>{formatCurrency(planOneLoan / 52)}</td>
@@ -76,7 +76,7 @@ const Table = ({
               )}
               {plan2Loan > 0 && (
                 <tr>
-                  <th className='font-semibold'>Student Loan 2</th>
+                  <th className='font-medium'>Student Loan 2</th>
                   <td>{formatCurrency(plan2Loan)}</td>
                   <td>{formatCurrency(plan2Loan / 12)}</td>
                   <td>{formatCurrency(plan2Loan / 52)}</td>
@@ -85,15 +85,15 @@ const Table = ({
               )}
               {pgLoan > 0 && (
                 <tr>
-                  <th className='font-semibold'>Postgraduate Loan</th>
+                  <th className='font-medium'>Postgraduate Loan</th>
                   <td>{formatCurrency(pgLoan)}</td>
                   <td>{formatCurrency(pgLoan / 12)}</td>
                   <td>{formatCurrency(pgLoan / 52)}</td>
                   <td>{formatCurrency(pgLoan / 52 / 5)}</td>
                 </tr>
               )}
-              <tr className='font-semibold'>
-                <th>2023 Take Home</th>
+              <tr className='font-medium'>
+                <th>23/24 Take Home</th>
                 <td>{formatCurrency(takehome)}</td>
                 <td>{formatCurrency(takehome / 12)}</td>
                 <td>{formatCurrency(takehome / 52)}</td>
