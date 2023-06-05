@@ -50,16 +50,19 @@ export function calculateIncomeTax(salary, pensionPercentage) {
   let income = calculateTaxableIncome(salary, pensionPercentage);
   let tax = 0;
 
-  if (income >= 112570) {
-    tax += (income - 112570) * INCOME_TAX_RATE_ADDITIONAL;
-    income = 112570;
+  if (income >= 125140) {
+    tax += (income - 125140) * INCOME_TAX_RATE_ADDITIONAL;
+    income = 125140;
+    console.log(tax);
   }
   if (income >= 37700) {
     tax += (income - 37700) * INCOME_TAX_RATE_HIGHER;
     income = 37700;
+    console.log(tax);
   }
   if (income > 0) {
     tax += income * INCOME_TAX_RATE_BASIC;
+    console.log(tax);
   }
 
   return tax;
@@ -93,7 +96,7 @@ export function calculatePlanOneLoan(salary, isPlan2Checked) {
       loan = (salary - planOneThreshold) * 0.09;
     }
   }
-  return loan;
+  return Math.floor(loan);
 }
 
 // need to confirm accuracy, govt website is obfuscated re: what source this is calculated on
@@ -103,7 +106,7 @@ export function calculatePlanTwoLoan(salary) {
     const taxableIncome = salary - planTwoThreshold;
     loan = taxableIncome * 0.09;
   }
-  return loan;
+  return Math.floor(loan);
 }
 
 export function calculatePgLoan(salary) {
@@ -112,7 +115,7 @@ export function calculatePgLoan(salary) {
     const taxableIncome = salary - pgThreshold;
     tax = taxableIncome * 0.06;
   }
-  return tax;
+  return Math.floor(tax);
 }
 
 export function calculateTakehome(

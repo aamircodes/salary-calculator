@@ -21,7 +21,7 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='max-w-4xl mx-auto flex flex-col gap-4 sm:gap-12 bg-base-100'>
+    <div className='max-w-4xl mx-auto flex flex-col gap-6 sm:gap-12 bg-base-100'>
       <Header />
       <div ref={formRef}>
         <Form
@@ -41,7 +41,7 @@ const App = () => {
       </div>
       <div ref={tableRef}>
         <Table
-          className='mt-12'
+          className='md:mt-8'
           grossIncome={grossIncome}
           taxableIncome={taxableIncome}
           incomeTax={incomeTax}
