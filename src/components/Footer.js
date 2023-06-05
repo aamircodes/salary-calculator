@@ -5,7 +5,12 @@ const Footer = () => {
     <div className='pb-4'>
       <div className='divider'></div>
       <div className='text-center'>
-        <a className='link' href='https://twitter.com/aamircodes'>
+        <a
+          className='link'
+          target='_blank'
+          href='https://twitter.com/aamircodes'
+          rel='noreferrer'
+        >
           Contact me on Twitter
         </a>
       </div>
