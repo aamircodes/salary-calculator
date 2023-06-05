@@ -1,6 +1,5 @@
 const PERSONAL_ALLOWANCE = 12570;
 const BASIC_RATE_THRESHOLD = 50270;
-const HIGHER_RATE_THRESHOLD = 150000;
 const INCOME_TAX_RATE_BASIC = 0.2;
 const INCOME_TAX_RATE_HIGHER = 0.4;
 const INCOME_TAX_RATE_ADDITIONAL = 0.45;
@@ -49,7 +48,6 @@ export function calculateTaxableIncome(salary, pensionPercentage) {
 
 export function calculateIncomeTax(salary, pensionPercentage) {
   let income = calculateTaxableIncome(salary, pensionPercentage);
-  console.log(income);
   let tax = 0;
 
   if (income >= 112570) {

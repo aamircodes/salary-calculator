@@ -53,7 +53,7 @@ const App = () => {
           takehome={takehome}
         />
       </div>
-      <TakehomeText percent={takehome} totalPay={grossIncome} />
+      <TakehomeText takehome={takehome} gross={grossIncome} />
       <RecalculateButton
         scrollUp={() => formRef.current.scrollIntoView({ behavior: 'smooth' })}
       />

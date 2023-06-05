@@ -24,8 +24,8 @@ const Form = ({
   className,
   scrollDown,
 }) => {
-  const [salary, setSalary] = useState();
-  const [pensionRate, setPensionRate] = useState();
+  const [salary, setSalary] = useState('');
+  const [pensionRate, setPensionRate] = useState('');
   const [isPlanOneChecked, setIsPlanOneChecked] = useState(false);
   const [isPlanTwoChecked, setIsPlanTwoChecked] = useState(false);
   const [isPgChecked, setIsPgChecked] = useState(false);
