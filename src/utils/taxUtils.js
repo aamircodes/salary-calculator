@@ -53,16 +53,13 @@ export function calculateIncomeTax(salary, pensionPercentage) {
   if (income >= 125140) {
     tax += (income - 125140) * INCOME_TAX_RATE_ADDITIONAL;
     income = 125140;
-    console.log(tax);
   }
   if (income >= 37700) {
     tax += (income - 37700) * INCOME_TAX_RATE_HIGHER;
     income = 37700;
-    console.log(tax);
   }
   if (income > 0) {
     tax += income * INCOME_TAX_RATE_BASIC;
-    console.log(tax);
   }
 
   return tax;
