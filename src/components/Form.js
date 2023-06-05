@@ -70,7 +70,7 @@ const Form = ({
       setTakehome(takehome);
       scrollDown();
     } else {
-      console.log('error mate');
+      console.log('error');
     }
   };
 
