@@ -30,7 +30,7 @@ const Table = ({
               </tr>
             </thead>
             <tbody>
-              <tr className='font-semibold'>
+              <tr className='font-medium'>
                 <th className='font-medium'>Gross Income</th>
                 <td>{formatCurrency(grossIncome)}</td>
                 <td>{formatCurrency(grossIncome / 12)}</td>
@@ -59,7 +59,7 @@ const Table = ({
                 <td>{formatCurrency(incomeTax / 52 / 5)}</td>
               </tr>
               <tr>
-                <th className='font-semibold'>National Insurance</th>
+                <th className='font-medium'>National Insurance</th>
                 <td>{formatCurrency(niTax)}</td>
                 <td>{formatCurrency(niTax / 12)}</td>
                 <td>{formatCurrency(niTax / 52)}</td>
@@ -92,7 +92,7 @@ const Table = ({
                   <td>{formatCurrency(pgLoan / 52 / 5)}</td>
                 </tr>
               )}
-              <tr className='font-medium'>
+              <tr className='font-semibold'>
                 <th>23/24 Take Home</th>
                 <td>{formatCurrency(takehome)}</td>
                 <td>{formatCurrency(takehome / 12)}</td>
