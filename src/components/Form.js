@@ -144,8 +144,8 @@ const Form = ({
                 Pension contributions %
               </label>
               <div className='form-control'>
-                <label className='label cursor-pointer flex justify-start space-x-2 p-0'>
-                  <span className='label-text font-semibold text-base'>
+                <label className='label cursor-pointer flex justify-center sm:justify-start space-x-2 p-0'>
+                  <span className='label-text font-normal text-sm'>
                     Salary sacrifice
                   </span>
                   <input
