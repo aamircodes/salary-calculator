@@ -10,7 +10,7 @@ const TakehomeText = ({ takehome, gross }) => {
 
   return (
     <div className='rounded-lg bg-base-300 shadow-md text-center font-bold'>
-      <p className='text-base md:text-lg p-4 mx-auto'>{message}</p>
+      <p className='text-base md:text-lg p-4 px-8 sm:p-4 mx-auto'>{message}</p>
     </div>
   );
 };
