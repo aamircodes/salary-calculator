@@ -5,9 +5,9 @@ import {
   calculatePensionDeductions,
   calculateTaxableIncome,
   calculateNiTax,
-  calculatePlanOneLoan,
-  calculatePlanTwoLoan,
-  calculatePgLoan,
+  calculatePlanOneMonthlyLoan,
+  calculatePlanTwoMonthlyLoan,
+  calculatePgMonthlyLoan,
   calculateTakehome,
 } from '../utils/taxUtils';
 
@@ -26,6 +26,7 @@ const Form = ({
 }) => {
   const [salary, setSalary] = useState('');
   const [pensionRate, setPensionRate] = useState('');
+  const [isSalarySacrifice, setIsSalarySacrifice] = useState(false);
   const [isPlanOneChecked, setIsPlanOneChecked] = useState(false);
   const [isPlanTwoChecked, setIsPlanTwoChecked] = useState(false);
   const [isPgChecked, setIsPgChecked] = useState(false);
@@ -33,42 +34,88 @@ const Form = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (salary > 0 && pensionRate >= 0) {
-      const pensionPercentageDivided = pensionRate / 100;
-      const grossIncome = calculateGrossIncome(salary);
-      const taxableIncome = calculateTaxableIncome(
-        salary,
-        pensionPercentageDivided
-      );
-      const incomeTax = calculateIncomeTax(salary, pensionPercentageDivided);
-      const pensionDeductions = calculatePensionDeductions(
-        salary,
-        pensionPercentageDivided
-      );
-      const niTax = calculateNiTax(salary);
+      if (isSalarySacrifice) {
+        const pensionPercentageDivided = pensionRate / 100;
+        const newSalary = salary - salary * pensionPercentageDivided;
+        const grossIncome = calculateGrossIncome(salary);
+        const taxableIncome = calculateTaxableIncome(
+          salary,
+          pensionPercentageDivided
+        );
+        const incomeTax = calculateIncomeTax(salary, pensionPercentageDivided);
+        const pensionDeductions = calculatePensionDeductions(
+          salary,
+          pensionPercentageDivided
+        );
+        const niTax = calculateNiTax(newSalary);
 
-      const planOneLoan = isPlanOneChecked
-        ? calculatePlanOneLoan(salary, isPlanTwoChecked)
-        : '';
-      const plan2Loan = isPlanTwoChecked ? calculatePlanTwoLoan(salary) : '';
-      const pgLoan = isPgChecked ? calculatePgLoan(salary) : '';
-      const takehome = calculateTakehome(
-        salary,
-        pensionPercentageDivided,
-        isPlanOneChecked,
-        isPlanTwoChecked,
-        isPgChecked
-      );
+        const planOneLoan = isPlanOneChecked
+          ? calculatePlanOneMonthlyLoan(newSalary, isPlanTwoChecked)
+          : '';
+        const plan2Loan = isPlanTwoChecked
+          ? calculatePlanTwoMonthlyLoan(newSalary)
+          : '';
+        const pgLoan = isPgChecked ? calculatePgMonthlyLoan(newSalary) : '';
+        const takehome = calculateTakehome(
+          salary,
+          pensionPercentageDivided,
+          isSalarySacrifice,
+          isPlanOneChecked,
+          isPlanTwoChecked,
+          isPgChecked
+        );
 
-      setGrossIncome(grossIncome);
-      setTaxableIncome(taxableIncome);
-      setIncomeTax(incomeTax);
-      setPensionDeductions(pensionDeductions);
-      setNiTax(niTax);
-      setPlanOneLoan(planOneLoan);
-      setPlan2Loan(plan2Loan);
-      setPgLoan(pgLoan);
-      setTakehome(takehome);
-      scrollDown();
+        setGrossIncome(grossIncome);
+        setTaxableIncome(taxableIncome);
+        setIncomeTax(incomeTax);
+        setPensionDeductions(pensionDeductions);
+        setNiTax(niTax);
+        setPlanOneLoan(planOneLoan);
+        setPlan2Loan(plan2Loan);
+        setPgLoan(pgLoan);
+        setTakehome(takehome);
+        scrollDown();
+      } else if (salary > 0 && pensionRate >= 0) {
+        const pensionPercentageDivided = pensionRate / 100;
+        const grossIncome = calculateGrossIncome(salary);
+        const taxableIncome = calculateTaxableIncome(
+          salary,
+          pensionPercentageDivided
+        );
+        const incomeTax = calculateIncomeTax(salary, pensionPercentageDivided);
+        const pensionDeductions = calculatePensionDeductions(
+          salary,
+          pensionPercentageDivided
+        );
+        const niTax = calculateNiTax(salary);
+
+        const planOneLoan = isPlanOneChecked
+          ? calculatePlanOneMonthlyLoan(salary, isPlanTwoChecked)
+          : '';
+        const plan2Loan = isPlanTwoChecked
+          ? calculatePlanTwoMonthlyLoan(salary)
+          : '';
+        const pgLoan = isPgChecked ? calculatePgMonthlyLoan(salary) : '';
+        const takehome = calculateTakehome(
+          salary,
+          pensionPercentageDivided,
+          isSalarySacrifice,
+          isPlanOneChecked,
+          isPlanTwoChecked,
+          isPgChecked
+        );
+
+        setGrossIncome(grossIncome);
+        setTaxableIncome(taxableIncome);
+        setIncomeTax(incomeTax);
+        setPensionDeductions(pensionDeductions);
+        setNiTax(niTax);
+        setPlanOneLoan(planOneLoan);
+        setPlan2Loan(plan2Loan);
+        setPgLoan(pgLoan);
+        setTakehome(takehome);
+        scrollDown();
+      }
     } else {
       console.log('error');
     }
@@ -92,9 +139,25 @@ const Form = ({
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
             />
-            <label className='text-lg sm:text-xl font-semibold text-center md:text-start'>
-              Pension contributions %
-            </label>
+            <div className='flex flex-col'>
+              <label className='text-lg sm:text-xl font-semibold text-center md:text-start'>
+                Pension contributions %
+              </label>
+              <div className='form-control'>
+                <label className='label cursor-pointer flex justify-start space-x-2 p-0'>
+                  <span className='label-text font-semibold text-base'>
+                    Salary sacrifice
+                  </span>
+                  <input
+                    type='checkbox'
+                    checked={isSalarySacrifice}
+                    onChange={() => setIsSalarySacrifice(!isSalarySacrifice)}
+                    className='checkbox checkbox-xs'
+                  />
+                </label>
+              </div>
+            </div>
+
             <input
               className='input input-md h-10 input-bordered mx-20'
               type='number'

@@ -83,7 +83,7 @@ export function calculateNiTax(salary) {
 }
 
 // need to confirm accuracy, govt website is obfuscated re: what source this is calculated on
-export function calculatePlanOneLoan(salary, isPlan2Checked) {
+export function calculatePlanOneMonthlyLoan(salary, isPlan2Checked) {
   let loan = 0;
 
   if (salary > planOneThreshold) {
@@ -93,42 +93,73 @@ export function calculatePlanOneLoan(salary, isPlan2Checked) {
       loan = (salary - planOneThreshold) * 0.09;
     }
   }
-  return Math.floor(loan);
+  return Math.floor(loan / 12);
 }
 
 // need to confirm accuracy, govt website is obfuscated re: what source this is calculated on
-export function calculatePlanTwoLoan(salary) {
+export function calculatePlanTwoMonthlyLoan(salary) {
   let loan = 0;
   if (salary > planTwoThreshold) {
     const taxableIncome = salary - planTwoThreshold;
     loan = taxableIncome * 0.09;
   }
-  return Math.floor(loan);
+  return Math.floor(loan / 12);
 }
 
-export function calculatePgLoan(salary) {
+export function calculatePgMonthlyLoan(salary) {
   let tax = 0;
   if (salary > pgThreshold) {
     const taxableIncome = salary - pgThreshold;
     tax = taxableIncome * 0.06;
   }
-  return Math.floor(tax);
+  return Math.floor(tax / 12);
 }
 
 export function calculateTakehome(
   salary,
   pensionPercentage,
+  isSalarySacrifice,
   isPlanOneChecked,
   isPlan2Checked,
   isPgChecked
 ) {
+  const pensionDeductions = calculatePensionDeductions(
+    salary,
+    pensionPercentage
+  );
+  const incomeTax = calculateIncomeTax(salary, pensionPercentage);
+  const niTax = isSalarySacrifice
+    ? calculateNiTax(salary - pensionDeductions)
+    : calculateNiTax(salary);
+
+  const planOneLoan = isPlanOneChecked
+    ? (isSalarySacrifice
+        ? calculatePlanOneMonthlyLoan(
+            salary - pensionDeductions,
+            isPlan2Checked
+          )
+        : calculatePlanOneMonthlyLoan(salary, isPlan2Checked)) * 12
+    : 0;
+
+  const planTwoLoan = isPlan2Checked
+    ? (isSalarySacrifice
+        ? calculatePlanTwoMonthlyLoan(salary - pensionDeductions)
+        : calculatePlanTwoMonthlyLoan(salary)) * 12
+    : 0;
+
+  const pgLoan = isPgChecked
+    ? (isSalarySacrifice
+        ? calculatePgMonthlyLoan(salary - pensionDeductions)
+        : calculatePgMonthlyLoan(salary)) * 12
+    : 0;
+
   return (
     salary -
-    calculatePensionDeductions(salary, pensionPercentage) -
-    calculateIncomeTax(salary, pensionPercentage) -
-    calculateNiTax(salary) -
-    (isPlanOneChecked ? calculatePlanOneLoan(salary, isPlan2Checked) : 0) -
-    (isPlan2Checked ? calculatePlanTwoLoan(salary) : 0) -
-    (isPgChecked ? calculatePgLoan(salary) : 0)
+    pensionDeductions -
+    incomeTax -
+    niTax -
+    planOneLoan -
+    planTwoLoan -
+    pgLoan
   );
 }

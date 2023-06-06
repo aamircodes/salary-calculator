@@ -68,8 +68,8 @@ const Table = ({
               {planOneLoan > 0 && (
                 <tr>
                   <th className='font-medium'>Student Loan 1</th>
+                  <td>{formatCurrency(planOneLoan * 12)}</td>
                   <td>{formatCurrency(planOneLoan)}</td>
-                  <td>{formatCurrency(planOneLoan / 12)}</td>
                   <td>{formatCurrency(planOneLoan / 52)}</td>
                   <td>{formatCurrency(planOneLoan / 52 / 5)}</td>
                 </tr>
@@ -77,19 +77,19 @@ const Table = ({
               {plan2Loan > 0 && (
                 <tr>
                   <th className='font-medium'>Student Loan 2</th>
+                  <td>{formatCurrency(plan2Loan * 12)}</td>
                   <td>{formatCurrency(plan2Loan)}</td>
-                  <td>{formatCurrency(plan2Loan / 12)}</td>
-                  <td>{formatCurrency(plan2Loan / 52)}</td>
-                  <td>{formatCurrency(plan2Loan / 52 / 5)}</td>
+                  <td>{formatCurrency((plan2Loan * 12) / 52)}</td>
+                  <td>{formatCurrency((plan2Loan * 12) / 52 / 5)}</td>
                 </tr>
               )}
               {pgLoan > 0 && (
                 <tr>
                   <th className='font-medium'>Postgraduate Loan</th>
+                  <td>{formatCurrency(pgLoan * 12)}</td>
                   <td>{formatCurrency(pgLoan)}</td>
-                  <td>{formatCurrency(pgLoan / 12)}</td>
-                  <td>{formatCurrency(pgLoan / 52)}</td>
-                  <td>{formatCurrency(pgLoan / 52 / 5)}</td>
+                  <td>{formatCurrency((pgLoan * 12) / 52)}</td>
+                  <td>{formatCurrency((pgLoan * 12) / 52 / 5)}</td>
                 </tr>
               )}
               <tr className='font-semibold'>
