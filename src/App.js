@@ -1,20 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Form from './components/Form';
 import Table from './components/Table';
 import Header from './components/Header';
 import RecalculateButton from './components/RecalculateButton';
 import TakehomeText from './components/TakehomeText';
 import Footer from './components/Footer';
-import ReactGA from 'react-ga4';
 
 const App = () => {
-  const TRACKING_ID = 'G-EWDSMSMDMR';
-  ReactGA.initialize(TRACKING_ID);
-  ReactGA.send('pageview');
-
   const tableRef = useRef(null);
   const formRef = useRef(null);
-
   const [grossIncome, setGrossIncome] = useState(null);
   const [taxableIncome, setTaxableIncome] = useState(null);
   const [incomeTax, setIncomeTax] = useState('');

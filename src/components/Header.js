@@ -1,6 +1,6 @@
 import incomeIcon from '../logo.png';
 
-const Header = () => {
+const Header = ({ onClick }) => {
   const handleIconClick = () => {
     window.scrollTo(0, 0); // Scrolls to the top of the page
   };
