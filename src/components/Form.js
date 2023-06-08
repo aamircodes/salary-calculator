@@ -123,31 +123,29 @@ const Form = ({
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-300 rounded-lg shadow-md px-4 py-6 sm:pl-8'>
+      <section className='bg-base-300 rounded-lg shadow-md px-4 py-6'>
         <form onSubmit={handleSubmit} className='mx-auto'>
-          <div className='grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 p-1 items-center justify-center'>
-            <label className='text-lg sm:text-xl text-center md:text-start font-semibold'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 sm:gap-4 sm:pl-8 p-1 items-center gap-y-1'>
+            <label className='text-xl text-center sm:text-start font-semibold'>
               Your annual salary £
             </label>
             <input
               type='number'
               placeholder='enter salary'
-              className='input input-md h-10 input-borderer mx-20'
+              className='input input-md input-bordered h-10 mx-20 sm:mx-16'
               step='0.01'
               min={0}
               required
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
             />
-            <div className='flex flex-col'>
-              <label className='text-lg sm:text-xl font-semibold text-center md:text-start'>
+            <div className='flex flex-col mt-4 sm:mt-0'>
+              <label className='text-xl font-semibold text-center sm:text-start'>
                 Pension contributions %
               </label>
               <div className='form-control'>
                 <label className='label cursor-pointer flex justify-center sm:justify-start space-x-2 p-0'>
-                  <span className='label-text font-normal text-sm'>
-                    Salary sacrifice
-                  </span>
+                  <span className='label-text text-sm'>Salary sacrifice</span>
                   <input
                     type='checkbox'
                     checked={isSalarySacrifice}
@@ -159,7 +157,7 @@ const Form = ({
             </div>
 
             <input
-              className='input input-md h-10 input-bordered mx-20'
+              className='input input-md h-10 input-bordered mx-20 sm:mx-16'
               type='number'
               step='0.01'
               min={0}
@@ -169,11 +167,11 @@ const Form = ({
               value={pensionRate}
               onChange={(e) => setPensionRate(e.target.value)}
             />
-            <label className='text-lg sm:text-xl font-semibold text-center md:text-start'>
+            <label className='text-xl font-semibold text-center sm:text-start mt-4 sm:mt-0'>
               Student loan plan
             </label>
-            <div className='flex flex-row sm:space-x-2 justify-center md:justify-start'>
-              <label className='label cursor-pointer font-medium'>
+            <div className='flex flex-row sm:space-x-2 justify-center'>
+              <label className='label cursor-pointer'>
                 Plan 1
                 <input
                   type='checkbox'
@@ -182,7 +180,7 @@ const Form = ({
                   className='checkbox h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer font-medium'>
+              <label className='label cursor-pointer'>
                 Plan 2
                 <input
                   type='checkbox'
@@ -191,7 +189,7 @@ const Form = ({
                   className='checkbox h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer font-medium'>
+              <label className='label cursor-pointer'>
                 Postgraduate Loan
                 <input
                   type='checkbox'
