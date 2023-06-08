@@ -1,6 +1,6 @@
 {
-  "homepage": "https://aamircodes.github.io/tax-calculator/",
-  "name": "tax-calculator",
+  "homepage": "https://aamircodes.github.io/salary-calculator/",
+  "name": "salary-calculator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
