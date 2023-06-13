@@ -20,43 +20,47 @@ const App = () => {
   const [takehome, setTakehome] = useState('');
 
   return (
-    <div className='max-w-4xl mx-auto flex flex-col gap-6 sm:gap-12 bg-base-100'>
-      <Header />
-      <div ref={formRef}>
-        <Form
-          scrollDown={() =>
-            tableRef.current.scrollIntoView({ behavior: 'smooth' })
+    <div className='bg-base-300'>
+      <div className='max-w-4xl mx-auto flex flex-col gap-8 sm:gap-12'>
+        <Header />
+        <div ref={formRef}>
+          <Form
+            scrollDown={() =>
+              tableRef.current.scrollIntoView({ behavior: 'smooth' })
+            }
+            setGrossIncome={setGrossIncome}
+            setTaxableIncome={setTaxableIncome}
+            setIncomeTax={setIncomeTax}
+            setPensionDeductions={setPensionDeductions}
+            setNiTax={setNiTax}
+            setPlanOneLoan={setPlanOneLoan}
+            setPlan2Loan={setPlan2Loan}
+            setPgLoan={setPgLoan}
+            setTakehome={setTakehome}
+          />
+        </div>
+        <div ref={tableRef}>
+          <Table
+            className='md:my-8'
+            grossIncome={grossIncome}
+            taxableIncome={taxableIncome}
+            incomeTax={incomeTax}
+            pensionDeductions={pensionDeductions}
+            niTax={niTax}
+            planOneLoan={planOneLoan}
+            plan2Loan={plan2Loan}
+            pgLoan={pgLoan}
+            takehome={takehome}
+          />
+        </div>
+        <TakehomeText takehome={takehome} gross={grossIncome} />
+        <RecalculateButton
+          scrollUp={() =>
+            formRef.current.scrollIntoView({ behavior: 'smooth' })
           }
-          setGrossIncome={setGrossIncome}
-          setTaxableIncome={setTaxableIncome}
-          setIncomeTax={setIncomeTax}
-          setPensionDeductions={setPensionDeductions}
-          setNiTax={setNiTax}
-          setPlanOneLoan={setPlanOneLoan}
-          setPlan2Loan={setPlan2Loan}
-          setPgLoan={setPgLoan}
-          setTakehome={setTakehome}
         />
+        <Footer />
       </div>
-      <div ref={tableRef}>
-        <Table
-          className='md:mt-8'
-          grossIncome={grossIncome}
-          taxableIncome={taxableIncome}
-          incomeTax={incomeTax}
-          pensionDeductions={pensionDeductions}
-          niTax={niTax}
-          planOneLoan={planOneLoan}
-          plan2Loan={plan2Loan}
-          pgLoan={pgLoan}
-          takehome={takehome}
-        />
-      </div>
-      <TakehomeText takehome={takehome} gross={grossIncome} />
-      <RecalculateButton
-        scrollUp={() => formRef.current.scrollIntoView({ behavior: 'smooth' })}
-      />
-      <Footer />
     </div>
   );
 };

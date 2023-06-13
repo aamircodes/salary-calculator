@@ -123,7 +123,7 @@ const Form = ({
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-300 rounded-lg shadow-md px-4 py-6'>
+      <section className='bg-base-100 rounded-lg shadow-md px-4 py-6 m-2 md:m-0'>
         <form onSubmit={handleSubmit} className='mx-auto'>
           <div className='grid grid-cols-1 sm:grid-cols-2 sm:gap-4 sm:pl-8 p-1 items-center gap-y-1'>
             <label className='text-xl text-center sm:text-start font-semibold'>
@@ -132,7 +132,7 @@ const Form = ({
             <input
               type='number'
               placeholder='enter salary'
-              className='input input-md input-bordered h-10 mx-20 sm:mx-16'
+              className='input input-md input-bordered h-10 mx-16'
               step='0.01'
               min={0}
               required
@@ -155,9 +155,8 @@ const Form = ({
                 </label>
               </div>
             </div>
-
             <input
-              className='input input-md h-10 input-bordered mx-20 sm:mx-16'
+              className='input input-md h-10 input-bordered mx-16 '
               type='number'
               step='0.01'
               min={0}
@@ -171,7 +170,7 @@ const Form = ({
               Student loan plan
             </label>
             <div className='flex flex-row sm:space-x-2 justify-center'>
-              <label className='label cursor-pointer'>
+              <label className='label cursor-pointer text-sm sm:text-base'>
                 Plan 1
                 <input
                   type='checkbox'
@@ -180,7 +179,7 @@ const Form = ({
                   className='checkbox h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer'>
+              <label className='label cursor-pointer text-sm sm:text-base'>
                 Plan 2
                 <input
                   type='checkbox'
@@ -189,7 +188,7 @@ const Form = ({
                   className='checkbox h-5 w-5 ml-1'
                 />
               </label>
-              <label className='label cursor-pointer'>
+              <label className='label cursor-pointer text-sm sm:text-base'>
                 Postgraduate Loan
                 <input
                   type='checkbox'

@@ -14,11 +14,11 @@ const Table = ({
 }) => {
   return (
     <div className={`${className}`}>
-      <div className='rounded-lg bg-base-300 shadow-md'>
-        <h2 className='flex justify-center text-2xl font-bold pt-4'>
+      <div className='m-2 md:m-0 rounded-lg bg-base-100 shadow-md'>
+        <h2 className='flex justify-center text-2xl font-bold py-3'>
           Your Results
         </h2>
-        <div className='overflow-x-auto py-4 px-4'>
+        <div className='overflow-x-auto'>
           <table className='table table-zebra w-full'>
             <thead>
               <tr>

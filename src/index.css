@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.table th {
-    border-right: 1px solid #f7f7f7;
-}
-
-.table td {
-    border-right: 1px solid #f7f7f7;
-}
-
-.table th:last-child,
-.table td:last-child {
-  border-right: none;
-}
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

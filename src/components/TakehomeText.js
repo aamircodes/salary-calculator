@@ -9,7 +9,7 @@ const TakehomeText = ({ takehome, gross }) => {
     : 'Find out what % of your salary you take home by using the form above';
 
   return (
-    <div className='rounded-lg bg-base-300 shadow-md text-center font-bold'>
+    <div className='m-2 md:m-0 rounded-lg bg-base-100 shadow-md text-center font-bold'>
       <p className='text-base md:text-lg p-4 px-8 sm:p-4 mx-auto'>{message}</p>
     </div>
   );
