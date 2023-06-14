@@ -54,12 +54,14 @@ const App = () => {
           />
         </div>
         <TakehomeText takehome={takehome} gross={grossIncome} />
-        <RecalculateButton
-          scrollUp={() =>
-            formRef.current.scrollIntoView({ behavior: 'smooth' })
-          }
-        />
-        <Footer />
+        <div>
+          <RecalculateButton
+            scrollUp={() =>
+              formRef.current.scrollIntoView({ behavior: 'smooth' })
+            }
+          />
+          <Footer />
+        </div>
       </div>
     </div>
   );
