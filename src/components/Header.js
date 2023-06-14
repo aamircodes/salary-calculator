@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import incomeIcon from '../logo.png';
+import incomeIcon from '../img/logo.png';
 
 const Header = () => {
   const [theme, setTheme] = useState(
