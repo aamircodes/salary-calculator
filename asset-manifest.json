@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/salary-calculator/static/css/main.3af353a2.css",
-    "main.js": "/salary-calculator/static/js/main.4d139fe0.js",
+    "main.css": "/salary-calculator/static/css/main.a7f47fbe.css",
+    "main.js": "/salary-calculator/static/js/main.20e1119e.js",
     "static/media/logo.png": "/salary-calculator/static/media/logo.bc51da81fb08d82e2d0e.png",
     "index.html": "/salary-calculator/index.html",
-    "main.3af353a2.css.map": "/salary-calculator/static/css/main.3af353a2.css.map",
-    "main.4d139fe0.js.map": "/salary-calculator/static/js/main.4d139fe0.js.map"
+    "main.a7f47fbe.css.map": "/salary-calculator/static/css/main.a7f47fbe.css.map",
+    "main.20e1119e.js.map": "/salary-calculator/static/js/main.20e1119e.js.map"
   },
   "entrypoints": [
-    "static/css/main.3af353a2.css",
-    "static/js/main.4d139fe0.js"
+    "static/css/main.a7f47fbe.css",
+    "static/js/main.20e1119e.js"
   ]
 }
