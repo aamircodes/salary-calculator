@@ -14,7 +14,7 @@ const Table = ({
 }) => {
   return (
     <div className={`${className}`}>
-      <div className='m-2 md:m-0 rounded-lg bg-base-100 shadow-md'>
+      <div className='rounded-lg bg-base-100 shadow-md'>
         <h2 className='flex justify-center text-2xl font-bold py-3'>
           Your Results
         </h2>
@@ -23,15 +23,15 @@ const Table = ({
             <thead>
               <tr>
                 <th></th>
-                <th>Year</th>
-                <th>Month</th>
-                <th>Week</th>
-                <th>Day</th>
+                <th className='text-base'>Year</th>
+                <th className='text-base'>Month</th>
+                <th className='text-base'>Week</th>
+                <th className='text-base'>Day</th>
               </tr>
             </thead>
             <tbody>
-              <tr className='font-medium'>
-                <th className='font-medium'>Gross Income</th>
+              <tr className='text-base'>
+                <th>Gross Income</th>
                 <td>{formatCurrency(grossIncome)}</td>
                 <td>{formatCurrency(grossIncome / 12)}</td>
                 <td>{formatCurrency(grossIncome / 52)}</td>
@@ -67,7 +67,7 @@ const Table = ({
               </tr>
               {planOneLoan > 0 && (
                 <tr>
-                  <th className='font-medium'>Student Loan 1</th>
+                  <th className='font-medium text-lg'>Student Loan 1</th>
                   <td>{formatCurrency(planOneLoan * 12)}</td>
                   <td>{formatCurrency(planOneLoan)}</td>
                   <td>{formatCurrency(planOneLoan / 52)}</td>
@@ -92,7 +92,7 @@ const Table = ({
                   <td>{formatCurrency((pgLoan * 12) / 52 / 5)}</td>
                 </tr>
               )}
-              <tr className='font-semibold'>
+              <tr className='text-lg font-semibold'>
                 <th>23/24 Take Home</th>
                 <td>{formatCurrency(takehome)}</td>
                 <td>{formatCurrency(takehome / 12)}</td>

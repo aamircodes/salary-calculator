@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <div className='bg-base-300'>
-      <div className='max-w-4xl mx-auto flex flex-col gap-8 sm:gap-12'>
+      <div className='max-w-5xl mx-auto flex flex-col gap-12 sm:gap-12 p-2'>
         <Header />
         <div ref={formRef}>
           <Form

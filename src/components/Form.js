@@ -123,7 +123,7 @@ const Form = ({
 
   return (
     <div className={`${className}`}>
-      <section className='bg-base-100 rounded-lg shadow-md px-4 py-6 m-2 md:m-0'>
+      <section className='bg-base-100 rounded-lg shadow-md px-4 py-5'>
         <form onSubmit={handleSubmit} className='mx-auto'>
           <div className='grid grid-cols-1 sm:grid-cols-2 sm:gap-4 sm:pl-8 p-1 items-center gap-y-1'>
             <label className='text-xl text-center sm:text-start font-semibold'>
