@@ -132,7 +132,7 @@ const Form = ({
             <input
               type='number'
               placeholder='enter salary'
-              className='input input-md input-bordered h-10 mx-16'
+              className='input input-md h-10 text-base sm:text-sm input-bordered mx-16'
               step='0.01'
               min={0}
               required
@@ -156,7 +156,7 @@ const Form = ({
               </div>
             </div>
             <input
-              className='input input-md h-10 input-bordered mx-16 '
+              className='input input-md h-10 text-base sm:text-sm  input-bordered mx-16'
               type='number'
               step='0.01'
               min={0}
