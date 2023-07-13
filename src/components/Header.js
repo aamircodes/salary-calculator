@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import incomeIcon from '../img/logo.png';
+import incomeIcon from '../img/salary.png';
 
 const Header = () => {
   const [theme, setTheme] = useState(
@@ -18,8 +18,8 @@ const Header = () => {
 
   return (
     <div className='bg-base-100 shadow-md rounded-lg w-full'>
-      <header className='flex justify-between  px-2 py-3'>
-        <button
+      <header className='flex justify-between px-2 py-3'>
+        <div
           onClick={() => {
             window.location.href =
               'https://aamircodes.github.io/salary-calculator/';
@@ -27,7 +27,7 @@ const Header = () => {
           className='btn px-0 sm:px-2 btn-ghost'
         >
           <img className='h-10' src={incomeIcon} alt='Income icon' />
-        </button>
+        </div>
         <button
           onClick={() => {
             window.location.reload();
@@ -39,7 +39,7 @@ const Header = () => {
         <div>
           <label className='swap swap-rotate btn btn-ghost px-0 sm:px-2'>
             <input type='checkbox' onChange={handleToggle} />
-
+            {/* use assets folder */}
             <svg
               className='swap-on fill-current w-10 h-10'
               xmlns='http://www.w3.org/2000/svg'

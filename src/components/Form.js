@@ -49,9 +49,10 @@ const Form = ({
         );
         const niTax = calculateNiTax(newSalary);
 
-        const planOneLoan = isPlanOneChecked
-          ? calculatePlanOneMonthlyLoan(newSalary, isPlanTwoChecked)
-          : '';
+        const planOneLoan =
+          isPlanOneChecked ??
+          calculatePlanOneMonthlyLoan(newSalary, isPlanTwoChecked);
+
         const plan2Loan = isPlanTwoChecked
           ? calculatePlanTwoMonthlyLoan(newSalary)
           : '';
@@ -89,12 +90,13 @@ const Form = ({
         );
         const niTax = calculateNiTax(salary);
 
-        const planOneLoan = isPlanOneChecked
-          ? calculatePlanOneMonthlyLoan(salary, isPlanTwoChecked)
-          : '';
-        const plan2Loan = isPlanTwoChecked
-          ? calculatePlanTwoMonthlyLoan(salary)
-          : '';
+        const planOneLoan =
+          isPlanOneChecked ??
+          calculatePlanOneMonthlyLoan(salary, isPlanTwoChecked);
+
+        const plan2Loan =
+          isPlanTwoChecked ?? calculatePlanTwoMonthlyLoan(salary);
+
         const pgLoan = isPgChecked ? calculatePgMonthlyLoan(salary) : '';
         const takehome = calculateTakehome(
           salary,
